@@ -100,25 +100,24 @@ public class DaoPersonneImp implements DaoPersonne {
 	// -  modification 
 
 	@Override
-	public int updatePersonne(int id, String nom, String prenom, String surnom, String email, String motDePasse,
+	public int updatePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
 			String role) throws ClassNotFoundException, SQLException {
 		String requete = "Update Personne set nom = ?, prenom = ?,surnom = ?, email = ?, motDePasse = ?, role = ?  Where idPersonne = ?";
 		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
-
 		statement.setString(1, nom);
 		statement.setString(2, prenom);
 		statement.setString(3, surnom);
 		statement.setString(4, email);
 		statement.setString(5, motDePasse);
 		statement.setString(6, role);
-		// statement.setLong(3, id);
+		statement.setInt(7, idPersonne);
 
 		return statement.executeUpdate();
 	}
 
 	@Override
-	public int deleteById(int id) {
+	public int deleteById(int idPersonne) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -152,26 +152,53 @@ public class AdministrateurController {
 		Personne userlist = Tbl_Personne.getSelectionModel().getSelectedItem();
 		if (userlist != null) {
 			Txt_id.setText(String.valueOf(userlist.getIdPersonne()));
-			Txt_nom.setText(userlist.getMotDePasse());
-			Txt_prenom.setText(userlist.getNom());
-			Txt_surnom.setText(userlist.getPrenom());
-			Txt_email.setText(userlist.getSurnom());
-			Txt_password.setText(userlist.getEmail());
+			Txt_nom.setText(userlist.getNom());
+			Txt_prenom.setText(userlist.getPrenom());
+			Txt_surnom.setText(userlist.getSurnom());
+			Txt_email.setText(userlist.getEmail());
+			Txt_password.setText(userlist.getMotDePasse());
 			cmbx_role.setValue(userlist.getRole());
 		}
 	}
 
-	//Button Vider
+	// Update personne
+	@FXML
+	public void ClickModif(ActionEvent event) throws ClassNotFoundException, SQLException {
+		try {
+			ServicePersonne.updatPerson(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(), Txt_prenom.getText(),
+					Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(), cmbx_role.getValue());
+
+			// Refresh
+			List<Personne> personnes = new ArrayList<Personne>();
+			personnes = ServicePersonne.getAllPersonnes();
+
+			data = FXCollections.observableArrayList();
+			for (Personne newpersonne : personnes) {
+				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+						newpersonne.getRole()));
+			}
+			if (data != null) {
+				Tbl_Personne.setItems(data);
+			} else {
+				System.out.println("Erreur data null");
+			}
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	// Button Vider
 	@FXML
 	void ClickVider(ActionEvent event) throws ClassNotFoundException, SQLException {
-		
-			Txt_id.setText("");
-			Txt_nom.setText("");
-			Txt_prenom.setText("");
-			Txt_surnom.setText("");
-			Txt_email.setText("");
-			Txt_password.setText("");
-			cmbx_role.setValue("Apprenant");
-		
+
+		Txt_id.setText("");
+		Txt_nom.setText("");
+		Txt_prenom.setText("");
+		Txt_surnom.setText("");
+		Txt_email.setText("");
+		Txt_password.setText("");
+		cmbx_role.setValue("Apprenant");
+
 	}
 }
