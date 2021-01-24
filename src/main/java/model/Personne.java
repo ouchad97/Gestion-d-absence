@@ -32,6 +32,10 @@ public class Personne {
 		this.role = role;
 	}
 
+	public Personne() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdPersonne() {
 		return idPersonne;
 	}

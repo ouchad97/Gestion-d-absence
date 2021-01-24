@@ -4,9 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.*;
 import services.*;
 
@@ -48,7 +50,7 @@ public class AdministrateurController {
 
 	@FXML
 	private Button btnSuppression;
-	
+
 	@FXML
 	private Button btnVide;
 
@@ -82,7 +84,7 @@ public class AdministrateurController {
 	public void initialize() throws ClassNotFoundException, SQLException {
 
 		// Create column
-
+		// get infos in table
 		idPersonneCol.setCellValueFactory(new PropertyValueFactory<Personne, Integer>("idPersonne"));
 
 		nomCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("nom"));
@@ -110,6 +112,55 @@ public class AdministrateurController {
 		} else {
 			System.out.println("Erreur data null");
 		}
+	}
+
+	// Add new personne
+	final Personne personne = new Personne();
+
+	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
+		try {
+			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+					"Apprenant");
+
+			// Refresh
+			List<Personne> personnes = new ArrayList<Personne>();
+			personnes = ServicePersonne.getAllPersonnes();
+
+			data = FXCollections.observableArrayList();
+			for (Personne newpersonne : personnes) {
+				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+						newpersonne.getRole()));
+			}
+			if (data != null) {
+				Tbl_Personne.setItems(data);
+			} else {
+				System.out.println("Erreur data null");
+			}
+
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
+		}
+
+	}
+
+	// select from table to textfield
+
+	@FXML
+	void ClickTableView(MouseEvent event) throws ClassNotFoundException, SQLException {
+		Personne userlist = Tbl_Personne.getSelectionModel().getSelectedItem();
+		if (userlist != null) {
+			Txt_id.setText(String.valueOf(userlist.getIdPersonne()));
+			Txt_nom.setText(userlist.getMotDePasse());
+			Txt_prenom.setText(userlist.getNom());
+			Txt_surnom.setText(userlist.getPrenom());
+			Txt_email.setText(userlist.getSurnom());
+			Txt_password.setText(userlist.getEmail());
+			// combo
+
+		}
+
 	}
 
 }

@@ -42,6 +42,7 @@ public class DaoPersonneImp implements DaoPersonne {
 		return personnes;
 	}
 
+	// - selectionner personne par id
 	@Override
 	public Personne getById(int id) throws ClassNotFoundException, SQLException {
 		Personne personne = null;
@@ -66,33 +67,37 @@ public class DaoPersonneImp implements DaoPersonne {
 		return personne;
 	}
 
+	// - ajout personne 
 	@Override
-	public Personne sauvePersonne(String nom, String prenom, String surnom, String email, String motDePasse,
+	public Personne sauvePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
 			String role) throws ClassNotFoundException, SQLException {
 		Personne reponse = null;
-		int id = -1;
+		//int id = -1;
 
-		String requete = "Insert into Personne (nom, prenom, surnom, email, motDePasse,role) Values (?, ?, ?, ?, ?, ?)";
+		String requete = "Insert into Personne (idPersonne, nom, prenom, surnom, email, motDePasse,role) Values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
-
-		statement.setString(1, nom);
-		statement.setString(2, prenom);
-		statement.setString(3, surnom);
-		statement.setString(4, email);
-		statement.setString(5, motDePasse);
-		statement.setString(6, role);
+		
+		statement.setInt(1, idPersonne);
+		statement.setString(2, nom);
+		statement.setString(3, prenom);
+		statement.setString(4, surnom);
+		statement.setString(5, email);
+		statement.setString(6, motDePasse);
+		statement.setString(7, role);
 		statement.executeUpdate();
 
 		ResultSet rs = statement.getGeneratedKeys();
 
 		if (rs.next()) {
-			id = rs.getInt(1);
+			idPersonne = rs.getInt(1);
 		}
-		reponse = new Personne(id, nom, prenom, surnom, email, motDePasse, role);
+		reponse = new Personne(idPersonne, nom, prenom, surnom, email, motDePasse, role);
 
 		return reponse;
 	}
+
+	// -  modification 
 
 	@Override
 	public int updatePersonne(int id, String nom, String prenom, String surnom, String email, String motDePasse,
