@@ -40,7 +40,7 @@ public class AdministrateurController {
 	private TextField Txt_password;
 
 	@FXML
-	private ComboBox<?> cmbx_role;
+	private ComboBox<String> cmbx_role;
 
 	@FXML
 	private Button btnAjout;
@@ -82,9 +82,11 @@ public class AdministrateurController {
 
 	@FXML
 	public void initialize() throws ClassNotFoundException, SQLException {
+		// combobox Roles
+		cmbx_role.getItems().addAll("Apprenant", "Formateur", "Secretaire", "Administrateur");
+		cmbx_role.setValue("Apprenant");
 
-		// Create column
-		// get infos in table
+		// Create column and get info's
 		idPersonneCol.setCellValueFactory(new PropertyValueFactory<Personne, Integer>("idPersonne"));
 
 		nomCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("nom"));
