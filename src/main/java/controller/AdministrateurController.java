@@ -122,7 +122,8 @@ public class AdministrateurController {
 	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
 		try {
 			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
-					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),cmbx_role.getValue());
+					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+					cmbx_role.getValue());
 
 			// Refresh
 			List<Personne> personnes = new ArrayList<Personne>();
@@ -143,11 +144,9 @@ public class AdministrateurController {
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
 		}
-
 	}
 
 	// select from table to textfield
-
 	@FXML
 	void ClickTableView(MouseEvent event) throws ClassNotFoundException, SQLException {
 		Personne userlist = Tbl_Personne.getSelectionModel().getSelectedItem();
@@ -159,9 +158,20 @@ public class AdministrateurController {
 			Txt_email.setText(userlist.getSurnom());
 			Txt_password.setText(userlist.getEmail());
 			cmbx_role.setValue(userlist.getRole());
-
 		}
-
 	}
 
+	//Button Vider
+	@FXML
+	void ClickVider(ActionEvent event) throws ClassNotFoundException, SQLException {
+		
+			Txt_id.setText("");
+			Txt_nom.setText("");
+			Txt_prenom.setText("");
+			Txt_surnom.setText("");
+			Txt_email.setText("");
+			Txt_password.setText("");
+			cmbx_role.setValue("Apprenant");
+		
+	}
 }

@@ -70,7 +70,7 @@
                   <Font name="Dubai Medium" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnVide" layoutX="294.0" layoutY="363.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #002D6D;" text="Vider" textFill="WHITE">
+            <Button fx:id="btnVide" layoutX="294.0" layoutY="363.0" mnemonicParsing="false" onAction="#ClickVider" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #002D6D;" text="Vider" textFill="WHITE">
                <font>
                   <Font name="Dubai Medium" size="12.0" />
                </font>
