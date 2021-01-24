@@ -122,8 +122,7 @@ public class AdministrateurController {
 	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
 		try {
 			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
-					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
-					"Apprenant");
+					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),cmbx_role.getValue());
 
 			// Refresh
 			List<Personne> personnes = new ArrayList<Personne>();
@@ -159,7 +158,7 @@ public class AdministrateurController {
 			Txt_surnom.setText(userlist.getPrenom());
 			Txt_email.setText(userlist.getSurnom());
 			Txt_password.setText(userlist.getEmail());
-			// combo
+			cmbx_role.setValue(userlist.getRole());
 
 		}
 
