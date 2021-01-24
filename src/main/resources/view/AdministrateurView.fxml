@@ -65,7 +65,7 @@
                   <Font name="Dubai Medium" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnSuppression" layoutX="199.0" layoutY="363.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #002D6D;" text="Supprimer" textFill="WHITE">
+            <Button fx:id="btnSuppression" layoutX="199.0" layoutY="363.0" mnemonicParsing="false" onAction="#ClickSupp" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #002D6D;" text="Supprimer" textFill="WHITE">
                <font>
                   <Font name="Dubai Medium" size="12.0" />
                </font>

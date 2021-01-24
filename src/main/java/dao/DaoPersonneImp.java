@@ -11,9 +11,9 @@ import database.database;
 import model.Personne;
 
 public class DaoPersonneImp implements DaoPersonne {
-	 Statement statement = null;
+	Statement statement = null;
 
-	public  List<Personne> getAll() throws ClassNotFoundException, SQLException {
+	public List<Personne> getAll() throws ClassNotFoundException, SQLException {
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
@@ -67,17 +67,17 @@ public class DaoPersonneImp implements DaoPersonne {
 		return personne;
 	}
 
-	// - ajout personne 
+	// - ajout personne
 	@Override
-	public Personne sauvePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
-			String role) throws ClassNotFoundException, SQLException {
+	public Personne sauvePersonne(int idPersonne, String nom, String prenom, String surnom, String email,
+			String motDePasse, String role) throws ClassNotFoundException, SQLException {
 		Personne reponse = null;
-		//int id = -1;
+		// int id = -1;
 
 		String requete = "Insert into Personne (idPersonne, nom, prenom, surnom, email, motDePasse,role) Values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
-		
+
 		statement.setInt(1, idPersonne);
 		statement.setString(2, nom);
 		statement.setString(3, prenom);
@@ -97,8 +97,7 @@ public class DaoPersonneImp implements DaoPersonne {
 		return reponse;
 	}
 
-	// -  modification 
-
+	// - modification
 	@Override
 	public int updatePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
 			String role) throws ClassNotFoundException, SQLException {
@@ -116,9 +115,13 @@ public class DaoPersonneImp implements DaoPersonne {
 		return statement.executeUpdate();
 	}
 
+	// suppression
 	@Override
-	public int deleteById(int idPersonne) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException {
+		String requete = "Delete from Personne Where idPersonne = ?";
+		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
+				Statement.RETURN_GENERATED_KEYS);
+		statement.setInt(1, idPersonne);
+		return statement.executeUpdate();
 	}
 }

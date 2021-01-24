@@ -188,6 +188,40 @@ public class AdministrateurController {
 		}
 	}
 
+	// Delete personne
+	@FXML
+	public void ClickSupp(ActionEvent event) throws ClassNotFoundException, SQLException {
+		try {
+			ServicePersonne.deletePerson(Integer.parseInt(Txt_id.getText()));
+
+			// Refresh
+			Txt_id.setText("");
+			Txt_nom.setText("");
+			Txt_prenom.setText("");
+			Txt_surnom.setText("");
+			Txt_email.setText("");
+			Txt_password.setText("");
+			cmbx_role.setValue("Apprenant");
+
+			List<Personne> personnes = new ArrayList<Personne>();
+			personnes = ServicePersonne.getAllPersonnes();
+
+			data = FXCollections.observableArrayList();
+			for (Personne newpersonne : personnes) {
+				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+						newpersonne.getRole()));
+			}
+			if (data != null) {
+				Tbl_Personne.setItems(data);
+			} else {
+				System.out.println("Erreur data null");
+			}
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+
 	// Button Vider
 	@FXML
 	void ClickVider(ActionEvent event) throws ClassNotFoundException, SQLException {

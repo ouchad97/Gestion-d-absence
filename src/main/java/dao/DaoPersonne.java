@@ -16,6 +16,6 @@ public interface DaoPersonne {
 	public int updatePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
 			String role) throws ClassNotFoundException, SQLException;
 
-	public int deleteById(int idPersonne);
+	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException;
 
 }

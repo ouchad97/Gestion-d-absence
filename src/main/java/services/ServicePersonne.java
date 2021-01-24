@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ServicePersonne {
 
-	///la liste des personnes.
-	 
+	/// la liste des personnes.
+
 	public static List<Personne> personnes = new ArrayList<Personne>();
 	public static DaoPersonne daoPersonne = new DaoPersonneImp();
 
@@ -18,6 +18,7 @@ public class ServicePersonne {
 		return personnes = daoPersonne.getAll();
 	}
 
+	// ajout
 	public static Personne addPersonne(int idPersonne, String nom, String prenom, String surnom, String email,
 			String motDePasse, String role) throws ClassNotFoundException, SQLException {
 		return daoPersonne.sauvePersonne(idPersonne, nom, prenom, surnom, email, motDePasse, role);
@@ -29,8 +30,14 @@ public class ServicePersonne {
 	}
 
 	// modifier personne
-	public static void updatPerson(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
-			String role) throws ClassNotFoundException, SQLException {
+	public static void updatPerson(int idPersonne, String nom, String prenom, String surnom, String email,
+			String motDePasse, String role) throws ClassNotFoundException, SQLException {
 		daoPersonne.updatePersonne(idPersonne, nom, prenom, surnom, email, motDePasse, role);
 	}
+
+	// suppression
+	public static void deletePerson(int idPersonne) throws ClassNotFoundException, SQLException {
+		daoPersonne.deleteById(idPersonne);
+	}
+
 }
