@@ -97,6 +97,22 @@
                   </Label>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="AnchorFormateur" layoutX="18.0" layoutY="357.0" prefHeight="140.0" prefWidth="366.0">
+               <children>
+                  <ComboBox fx:id="cmbx_SalleF" layoutX="138.0" layoutY="-4.0" prefHeight="31.0" prefWidth="182.0" />
+                  <ComboBox fx:id="cmbx_PromotionF" layoutX="138.0" layoutY="40.0" prefHeight="31.0" prefWidth="182.0" />
+                  <Label layoutX="4.0" layoutY="5.0" text="ID Salle" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="2.0" layoutY="45.0" text="ID Promotion" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <TableView fx:id="Tbl_Personne" layoutX="405.0" layoutY="15.0" onMouseClicked="#ClickTableView" prefHeight="553.0" prefWidth="718.0">

@@ -79,22 +79,32 @@ public class AdministrateurController {
 
 	@FXML
 	private TableColumn<Personne, String> roleCol;
-	   @FXML
-	    private AnchorPane AnchorApprenant;
 	   
-	@FXML
-    private TextField Txt_referentiel;
+		@FXML
+	    private AnchorPane AnchorApprenant;
+		@FXML
+	    private AnchorPane AnchorFormateur;
 
-    @FXML
-    private ComboBox<?> cmbx_Salle;
+	    @FXML
+	    private ComboBox<?> cmbx_SalleF;
 
-    @FXML
-    private ComboBox<?> cmbx_Promotion;
+	    @FXML
+	    private ComboBox<?> cmbx_PromotionF;
+	   
+	    @FXML
+	    private TextField Txt_referentiel;
+
+	    @FXML
+	    private ComboBox<?> cmbx_Salle;
+
+	    @FXML
+	    private ComboBox<?> cmbx_Promotion;
 	ObservableList<Personne> data = null;
 
 	@FXML
 	public void initialize() throws ClassNotFoundException, SQLException {
 		AnchorApprenant.setVisible(false);
+		AnchorFormateur.setVisible(false);
 		// combobox Roles
 		cmbx_role.getItems().addAll("Apprenant", "Formateur", "Secretaire", "Administrateur");
 		cmbx_role.setValue("Selectionnez type de profile");
@@ -179,6 +189,16 @@ public class AdministrateurController {
 	public void selectRole(ActionEvent event) throws ClassNotFoundException, SQLException {
 		if(cmbx_role.getValue()=="Apprenant") {
 			AnchorApprenant.setVisible(true);
+			AnchorFormateur.setVisible(false);
+		}else {
+			if(cmbx_role.getValue()=="Formateur") {
+				AnchorFormateur.setVisible(true);
+				AnchorApprenant.setVisible(false);
+			}
+			if(cmbx_role.getValue()=="Administrateur" || cmbx_role.getValue()=="Secretaire") {
+				AnchorApprenant.setVisible(false);
+				AnchorFormateur.setVisible(false);
+			}
 		}
 	}
 	// Update personne
