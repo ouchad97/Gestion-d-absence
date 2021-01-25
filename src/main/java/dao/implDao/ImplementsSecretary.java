@@ -74,6 +74,9 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     // Store data from db and add it here
     ObservableList<Secretary> list = FXCollections.observableArrayList();
 
+    // For storing row id's
+    ArrayList<Integer> rows = new ArrayList<Integer>();
+
     // Constructor
     public ImplementsSecretary() {
         super();
@@ -150,13 +153,18 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             String dureeQuery = queryResult.getString("durree");
             String justifQuery = queryResult.getString("justif");
 
+            // Adding absenceId to rows arraylist
+            rows.add(Integer.parseInt(idAbsence));
+
+//            System.out.println("Absence ID: " + idAbsence);
+
             // create action buttons in justifie column in table
             Button btn = createActionButtons(idAbsence);
 
             // check if justifie is 0 A.K.A student absence is unjustified
             if (justifQuery.equals("0")) {
                 // create rows in table
-                list.add(new Secretary(idQuery, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, dureeQuery, btn));
+                list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, dureeQuery, btn));
             }
         }
     }
@@ -164,7 +172,8 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     // For creating action buttons in justifie column
     @Override
     public Button createActionButtons(String btnId) {
-        Button i = new Button("non");
+        Button i = new Button("Marquer l'eleve comme justifie");
+        i.setStyle("-fx-pref-width: 190px;-fx-pref-height: 40px;-fx-font-size: 10px");
         i.setId(btnId);
         btnsList.add(i);
         i.setOnAction(this);
@@ -191,6 +200,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         statement.close();
     }
 
+    // Initialize basic style for table
     @Override
     public void initTableWindowStyle() {
         // initialize
@@ -252,18 +262,11 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // check if clicked button is equal to button in array btnsList
         for (Button btn: btnsList) {
             if (event.getSource().equals(btn)) {
-//                Integer index = Integer.parseInt(btn.getId());
-//                table.getItems().get(index).setVisible(false);
-//                table.
-//                        byid("tableid").getItems()[0].setVisible("false");
-//                table.requestFocus();
-//                table.getSelectionModel().select(index);
-////                table.getFocusModel().focus(index);
-//
-//                table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
-//                table.getSelectionModel().clearSelection();
-//                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+                // Index aka row id
+                Integer index = Integer.parseInt(btn.getId());
+
                 try {
+                    // Mark student absence as justified
                     markAbsenceJustified(btn.getId());
 
                 } catch (SQLException | ClassNotFoundException e) {
@@ -271,22 +274,29 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 }
 
                 // refresh table
-//                try {
-//                    refreshTable();
-//                } catch (ClassNotFoundException | SQLException e) {
-//                    System.out.println(e.getMessage());
-//                }
+                refreshTable(index);
             }
         }
     }
 
-    public void refreshTable() throws SQLException, ClassNotFoundException {
-//        table.getItems().clear();
-//        table.refresh();
-//        table = new TableView<Secretary>();
-//        new ImplementsSecretary();
-//        getAllAbsentStudents();
+    // For refreshing table when student marked as justified
+    public void refreshTable(int absenceID){
+        // using indexOf() to find index of 3
+        int pos = rows.indexOf(absenceID);
+
+        // request focus
+        table.requestFocus();
+
+        // select that row
+        table.getSelectionModel().select(pos);
+
+        // remove selected row
+        table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+
+        // clear selection
+        table.getSelectionModel().clearSelection();
+
+        // remove that element from array
+        rows.remove(pos);
     }
 }
-
-
