@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import model.*;
 import services.*;
 
@@ -77,14 +79,25 @@ public class AdministrateurController {
 
 	@FXML
 	private TableColumn<Personne, String> roleCol;
+	   @FXML
+	    private AnchorPane AnchorApprenant;
+	   
+	@FXML
+    private TextField Txt_referentiel;
 
+    @FXML
+    private ComboBox<?> cmbx_Salle;
+
+    @FXML
+    private ComboBox<?> cmbx_Promotion;
 	ObservableList<Personne> data = null;
 
 	@FXML
 	public void initialize() throws ClassNotFoundException, SQLException {
+		AnchorApprenant.setVisible(false);
 		// combobox Roles
 		cmbx_role.getItems().addAll("Apprenant", "Formateur", "Secretaire", "Administrateur");
-		cmbx_role.setValue("Apprenant");
+		cmbx_role.setValue("Selectionnez type de profile");
 
 		// Create column and get info's
 		idPersonneCol.setCellValueFactory(new PropertyValueFactory<Personne, Integer>("idPersonne"));
@@ -160,7 +173,14 @@ public class AdministrateurController {
 			cmbx_role.setValue(userlist.getRole());
 		}
 	}
-
+	
+	//SelectComboboxRole and change Anchor's
+	@FXML
+	public void selectRole(ActionEvent event) throws ClassNotFoundException, SQLException {
+		if(cmbx_role.getValue()=="Apprenant") {
+			AnchorApprenant.setVisible(true);
+		}
+	}
 	// Update personne
 	@FXML
 	public void ClickModif(ActionEvent event) throws ClassNotFoundException, SQLException {
@@ -201,7 +221,7 @@ public class AdministrateurController {
 			Txt_surnom.setText("");
 			Txt_email.setText("");
 			Txt_password.setText("");
-			cmbx_role.setValue("Apprenant");
+			cmbx_role.setValue("Selectionnez type de profile");
 
 			List<Personne> personnes = new ArrayList<Personne>();
 			personnes = ServicePersonne.getAllPersonnes();
@@ -232,7 +252,7 @@ public class AdministrateurController {
 		Txt_surnom.setText("");
 		Txt_email.setText("");
 		Txt_password.setText("");
-		cmbx_role.setValue("Apprenant");
+		cmbx_role.setValue("Selectionnez type de profile");
 
 	}
 }
