@@ -4,8 +4,8 @@ public class Absence {
 	
 	
 	private int idAbsence;
-	private String DataAbsence;
-	private int Duree;
+	private int dataAbsence;
+	private int duree;
 	private boolean justif;
 	
 	
@@ -15,17 +15,17 @@ public class Absence {
 	public void setIdAbsence(int idAbsence) {
 		this.idAbsence = idAbsence;
 	}
-	public String getDataAbsence() {
-		return DataAbsence;
+	public int getDataAbsence() {
+		return dataAbsence;
 	}
-	public void setDataAbsence(String dataAbsence) {
-		DataAbsence = dataAbsence;
+	public void setDataAbsence(int dataAbsence) {
+		this.dataAbsence = dataAbsence;
 	}
 	public int getDuree() {
-		return Duree;
+		return duree;
 	}
 	public void setDuree(int duree) {
-		Duree = duree;
+		this.duree = duree;
 	}
 	public boolean isJustif() {
 		return justif;
@@ -33,23 +33,19 @@ public class Absence {
 	public void setJustif(boolean justif) {
 		this.justif = justif;
 	}
-	
-	
-	
-	public Absence(int idAbsence, String dataAbsence, int duree, boolean justif) {
+	public Absence(int idAbsence, int dataAbsence, int duree, boolean justif) {
+		super();
 		this.idAbsence = idAbsence;
-		DataAbsence = dataAbsence;
-		Duree = duree;
+		this.dataAbsence = dataAbsence;
+		this.duree = duree;
 		this.justif = justif;
 	}
 	
-	
 	public Absence() {
-
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 	
 	
 	

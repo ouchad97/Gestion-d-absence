@@ -22,7 +22,7 @@ public class DaoLoginImp  implements DaoLogin{
 		List<Personne> personnes = new ArrayList<Personne>();
 
 		statement = database.getMyConnexion().createStatement();
-		System.out.println("cr�ation de l'objet Statement");
+		System.out.println("creation de l'objet Statement");
 
 		// 4- selectionner la table personnes
 		ResultSet resultat;

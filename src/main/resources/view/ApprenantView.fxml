@@ -47,7 +47,7 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="108.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referance :">
+      <Text layoutX="108.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surnom :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
@@ -72,7 +72,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Label_Ref" layoutX="188.0" layoutY="161.0" prefHeight="18.0" prefWidth="269.0" text="Developeur Web et Mobile">
+      <Label fx:id="Label_Surnom" layoutX="173.0" layoutY="161.0" prefHeight="18.0" prefWidth="269.0" text="Apprenant">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

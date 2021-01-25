@@ -46,7 +46,6 @@ public class DaoPersonneImp implements DaoPersonne {
 	@Override
 	public Personne getById(int id) throws ClassNotFoundException, SQLException {
 		Personne personne = null;
-
 		String requete = "Select * From Personne Where idPersonne= ?";
 		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete);
 
