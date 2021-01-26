@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/formateur.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/secretary.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
