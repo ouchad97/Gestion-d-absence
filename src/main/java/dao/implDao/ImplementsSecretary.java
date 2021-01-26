@@ -115,7 +115,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     public void getAllAbsentStudents() throws SQLException, ClassNotFoundException {
         // Instantiate DbConnect and connect to database
         DbConnect dbConnect = new DbConnect();
-        Connection connection = dbConnect.getConnection();
+        Connection connection = dbConnect.getConnect();
 
         // Query that should be run
         String query = "SELECT\n" +
@@ -184,7 +184,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     public void markAbsenceJustified(String absenceID) throws SQLException, ClassNotFoundException {
         // Instantiate DbConnect and connect to database
         DbConnect dbConnect = new DbConnect();
-        Connection connection = dbConnect.getConnection();
+        Connection connection = dbConnect.getConnect();
 
         // Query that expect to be executed
         String query = "UPDATE abscence SET justif = 1 WHERE idAbscence = '" + absenceID + "';";
