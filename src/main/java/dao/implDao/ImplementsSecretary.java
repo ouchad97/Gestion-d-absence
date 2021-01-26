@@ -24,11 +24,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-import connexion.DbConnect;
+import connection.DbConnect;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -244,21 +242,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     @Override
     public void handle(Event event) {
-//        TextInputDialog dialog = new TextInputDialog("walter");
-//        dialog.setTitle("Text Input Dialog");
-//        dialog.setHeaderText("Look, a Text Input Dialog");
-//        dialog.setContentText("Please enter your name:");
-////        dialog.show();
-//
-//        // Traditional way to get the response value.
-//        Optional<String> result = dialog.showAndWait();
-//        if (result.isPresent()){
-//            System.out.println("Your name: " + result.get());
-//        }
-
-        // The Java 8 way to get the response value (with lambda expression).
-//        result.ifPresent(name -> System.out.println("Your name: " + name));
-
         // check if clicked button is equal to button in array btnsList
         for (Button btn: btnsList) {
             if (event.getSource().equals(btn)) {
