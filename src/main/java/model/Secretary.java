@@ -21,7 +21,8 @@ public class Secretary {
     ArrayList<Button> btnsList = new ArrayList<Button>();
 
     // Constructor
-    public Secretary(String id, String firstName, String lastName, String nickName, String email, String absenceDate, String period, Button btn) {
+    public Secretary(String id, String firstName, String lastName, String nickName, String email,
+                     String absenceDate, String period, Button btn) {
         this.id = new SimpleStringProperty(id);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
