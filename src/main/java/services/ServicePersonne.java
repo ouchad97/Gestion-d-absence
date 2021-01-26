@@ -1,6 +1,7 @@
 package services;
 
 import dao.*;
+import dao.implDao.DaoPersonneImp;
 import model.*;
 
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ public class ServicePersonne {
 	/// la liste des personnes.
 
 	public static List<Personne> personnes = new ArrayList<Personne>();
+	
+	
 	public static DaoPersonne daoPersonne = new DaoPersonneImp();
 
 	public static List<Personne> getAllPersonnes() throws ClassNotFoundException, SQLException {
@@ -40,4 +43,12 @@ public class ServicePersonne {
 		daoPersonne.deleteById(idPersonne);
 	}
 
+	public static Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email,
+			String motDePasse, String role, int idSalle, int idPromotion ,String referentiel) throws ClassNotFoundException, SQLException {
+
+		return daoPersonne.TestAJout(idPersonne, nom, prenom, surnom, email, motDePasse, role, idSalle, idPromotion, referentiel);
+	}
+	
+	
+	
 }

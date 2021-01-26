@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.DaoPersonne;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,26 +80,27 @@ public class AdministrateurController {
 
 	@FXML
 	private TableColumn<Personne, String> roleCol;
-	   
-		@FXML
-	    private AnchorPane AnchorApprenant;
-		@FXML
-	    private AnchorPane AnchorFormateur;
 
-	    @FXML
-	    private ComboBox<?> cmbx_SalleF;
+	@FXML
+	private AnchorPane AnchorApprenant;
+	@FXML
+	private AnchorPane AnchorFormateur;
 
-	    @FXML
-	    private ComboBox<?> cmbx_PromotionF;
-	   
-	    @FXML
-	    private TextField Txt_referentiel;
+	@FXML
+	private ComboBox<Integer> cmbx_SalleF;
 
-	    @FXML
-	    private ComboBox<?> cmbx_Salle;
+	@FXML
+	private ComboBox<Integer> cmbx_PromotionF;
 
-	    @FXML
-	    private ComboBox<?> cmbx_Promotion;
+	@FXML
+	private TextField Txt_referentiel;
+
+	@FXML
+	private ComboBox<Integer> cmbx_Salle;
+
+	@FXML
+	private ComboBox<Integer> cmbx_Promotion;
+
 	ObservableList<Personne> data = null;
 
 	@FXML
@@ -141,12 +143,17 @@ public class AdministrateurController {
 
 	// Add new personne
 	final Personne personne = new Personne();
+	final Apprenant apprenant = new Apprenant();
 
 	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
 		try {
-			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+			Apprenant apprenant = ServicePersonne.TestAJout(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
 					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
-					cmbx_role.getValue());
+					cmbx_role.getValue(), 1, 1, Txt_referentiel.getText());
+
+//					ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+//					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+//					cmbx_role.getValue());
 
 			// Refresh
 			List<Personne> personnes = new ArrayList<Personne>();
@@ -169,10 +176,38 @@ public class AdministrateurController {
 		}
 	}
 
+//	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
+//		try {
+//			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+//					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+//					cmbx_role.getValue());
+//
+//			// Refresh
+//			List<Personne> personnes = new ArrayList<Personne>();
+//			personnes = ServicePersonne.getAllPersonnes();
+//
+//			data = FXCollections.observableArrayList();
+//			for (Personne newpersonne : personnes) {
+//				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+//						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+//						newpersonne.getRole()));
+//			}
+//			if (data != null) {
+//				Tbl_Personne.setItems(data);
+//			} else {
+//				System.out.println("Erreur data null");
+//			}
+//
+//		} catch (ClassNotFoundException | SQLException e1) {
+//			e1.printStackTrace();
+//		}
+//	}
+
 	// select from table to textfield
 	@FXML
 	void ClickTableView(MouseEvent event) throws ClassNotFoundException, SQLException {
 		Personne userlist = Tbl_Personne.getSelectionModel().getSelectedItem();
+
 		if (userlist != null) {
 			Txt_id.setText(String.valueOf(userlist.getIdPersonne()));
 			Txt_nom.setText(userlist.getNom());
@@ -181,26 +216,37 @@ public class AdministrateurController {
 			Txt_email.setText(userlist.getEmail());
 			Txt_password.setText(userlist.getMotDePasse());
 			cmbx_role.setValue(userlist.getRole());
+
+			if (cmbx_role.getValue() == "Apprenant") {
+				cmbx_Salle.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdSalle());
+				cmbx_Promotion.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdPromotion());
+			} else {
+				cmbx_Salle.setValue(1);
+				cmbx_Promotion.setValue(1);
+			}
+
 		}
+
 	}
-	
-	//SelectComboboxRole and change Anchor's
+
+	// SelectComboboxRole and change Anchor's
 	@FXML
 	public void selectRole(ActionEvent event) throws ClassNotFoundException, SQLException {
-		if(cmbx_role.getValue()=="Apprenant") {
+		if (cmbx_role.getValue() == "Apprenant") {
 			AnchorApprenant.setVisible(true);
 			AnchorFormateur.setVisible(false);
-		}else {
-			if(cmbx_role.getValue()=="Formateur") {
+		} else {
+			if (cmbx_role.getValue() == "Formateur") {
 				AnchorFormateur.setVisible(true);
 				AnchorApprenant.setVisible(false);
 			}
-			if(cmbx_role.getValue()=="Administrateur" || cmbx_role.getValue()=="Secretaire") {
+			if (cmbx_role.getValue() == "Administrateur" || cmbx_role.getValue() == "Secretaire") {
 				AnchorApprenant.setVisible(false);
 				AnchorFormateur.setVisible(false);
 			}
 		}
 	}
+
 	// Update personne
 	@FXML
 	public void ClickModif(ActionEvent event) throws ClassNotFoundException, SQLException {

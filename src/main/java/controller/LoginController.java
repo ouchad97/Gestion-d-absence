@@ -8,6 +8,7 @@ import model.Apprenant;
 import model.Formateur;
 import model.Personne;
 import dao.*;
+import dao.implDao.DaoLoginImp;
 import model.Secretaire;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

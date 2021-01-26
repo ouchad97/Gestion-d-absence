@@ -1,13 +1,17 @@
-package dao;
+package dao.implDao;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import connection.DbConnect;
+import dao.DaoLogin;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Connection;
-import database.database;
+
 import model.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -21,7 +25,7 @@ public class DaoLoginImp  implements DaoLogin{
 	public List<Personne> getAll() throws ClassNotFoundException, SQLException {
 		List<Personne> personnes = new ArrayList<Personne>();
 
-		statement = database.getMyConnexion().createStatement();
+		statement = DbConnect.getConnect().createStatement();
 		System.out.println("cr�ation de l'objet Statement");
 
 		// 4- selectionner la table personnes
@@ -51,7 +55,7 @@ public class DaoLoginImp  implements DaoLogin{
 		Personne user = null;
 		try {
 			String query = "SELECT * FROM Personne WHERE email=? and motDePasse=?";
-			Connection con = database.getMyConnexion();
+			Connection con = DbConnect.getConnect();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, email);
 			ps.setString(2, motDePasse);

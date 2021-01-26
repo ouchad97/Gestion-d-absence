@@ -21,7 +21,10 @@ public class Personne {
 		this.motDePasse = motDePasse;
 		this.role = role;
 	}
-
+	public Personne(int idPersonne) {
+		super();
+		this.idPersonne = idPersonne;
+	}
 	public Personne(String nom, String prenom, String surnom, String email, String motDePasse, String role) {
 		super();
 		this.nom = nom;

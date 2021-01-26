@@ -1,13 +1,17 @@
-package dao;
+package dao.implDao;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import connection.DbConnect;
+import dao.DaoPersonne;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import database.database;
+import model.Apprenant;
 import model.Personne;
 
 public class DaoPersonneImp implements DaoPersonne {
@@ -17,7 +21,7 @@ public class DaoPersonneImp implements DaoPersonne {
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
-		statement = database.getMyConnexion().createStatement();
+		statement = DbConnect.getConnect().createStatement();
 
 		// - selectionner la table personnes
 		ResultSet resultat;
@@ -48,7 +52,7 @@ public class DaoPersonneImp implements DaoPersonne {
 		Personne personne = null;
 
 		String requete = "Select * From Personne Where idPersonne= ?";
-		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete);
+		PreparedStatement statement = DbConnect.getConnect().prepareStatement(requete);
 
 		statement.setLong(1, id);
 		ResultSet resultat = statement.executeQuery();
@@ -75,7 +79,7 @@ public class DaoPersonneImp implements DaoPersonne {
 		// int id = -1;
 
 		String requete = "Insert into Personne (idPersonne, nom, prenom, surnom, email, motDePasse,role) Values (?, ?, ?, ?, ?, ?, ?)";
-		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
+		PreparedStatement statement = DbConnect.getConnect().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
 
 		statement.setInt(1, idPersonne);
@@ -102,7 +106,7 @@ public class DaoPersonneImp implements DaoPersonne {
 	public int updatePersonne(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
 			String role) throws ClassNotFoundException, SQLException {
 		String requete = "Update Personne set nom = ?, prenom = ?,surnom = ?, email = ?, motDePasse = ?, role = ?  Where idPersonne = ?";
-		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
+		PreparedStatement statement = DbConnect.getConnect().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
 		statement.setString(1, nom);
 		statement.setString(2, prenom);
@@ -119,9 +123,38 @@ public class DaoPersonneImp implements DaoPersonne {
 	@Override
 	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException {
 		String requete = "Delete from Personne Where idPersonne = ?";
-		PreparedStatement statement = database.getMyConnexion().prepareStatement(requete,
+		PreparedStatement statement = DbConnect.getConnect().prepareStatement(requete,
 				Statement.RETURN_GENERATED_KEYS);
 		statement.setInt(1, idPersonne);
 		return statement.executeUpdate();
 	}
+
+	@Override
+	public Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email,
+			String motDePasse, String role, int idSalle, int idPromotion, String referentiel)
+			throws ClassNotFoundException, SQLException {
+
+		Apprenant reponse = null;
+
+		Statement statement = null;
+		String r1 = "INSERT INTO Personne (idPersonne, nom, prenom, surnom, email, motDePasse, role) Values" + "("
+				+ idPersonne + ", '" + nom + "', '" + prenom + "', '" + surnom + "', '" + email + "', '" + motDePasse
+				+ "', '" + role + "')";
+		String r2 = "INSERT INTO Apprenant (idPersonne, idSalle, idPromotion, referentiel) VALUES" + "(" + idPersonne
+				+ ", " + idSalle + ", " + idPromotion + ", '" + referentiel + "')";
+
+		try {
+			statement = DbConnect.getConnect().createStatement();
+			statement.addBatch(r1);
+			statement.addBatch(r2);
+			statement.executeBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.print(r2);
+		return reponse;
+	}
+
+
 }

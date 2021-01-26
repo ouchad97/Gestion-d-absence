@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/controller/AdministrateurController.java=UTF-8
-encoding//src/main/java/dao/DaoLoginImp.java=UTF-8
-encoding//src/main/java/dao/DaoPersonneImp.java=UTF-8
-encoding//src/main/java/database/database.java=UTF-8
+encoding//src/main/java/dao/implDao/DaoLoginImp.java=UTF-8
+encoding//src/main/java/dao/implDao/DaoPersonneImp.java=UTF-8
+encoding//src/main/java/connection/connection.java=UTF-8

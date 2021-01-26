@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import model.Apprenant;
 import model.Personne;
 
 public interface DaoPersonne {
@@ -17,5 +19,12 @@ public interface DaoPersonne {
 			String role) throws ClassNotFoundException, SQLException;
 
 	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException;
+
+	
+	public Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
+			String role,int idSalle, int idPromotion, String referentiel)throws ClassNotFoundException, SQLException;
+
+
+	
 
 }
