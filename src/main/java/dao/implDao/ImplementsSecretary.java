@@ -57,8 +57,8 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     @FXML
     private TableColumn<Secretary, String> dateAbsence;
 
-    @FXML
-    private TableColumn<Secretary, String> duree;
+//    @FXML
+//    private TableColumn<Secretary, String> duree;
 
     @FXML
     private TableColumn<Secretary, String> justifie;
@@ -93,7 +93,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         this.surnom.setCellValueFactory(new PropertyValueFactory<Secretary, String>("NickName"));
         this.email.setCellValueFactory(new PropertyValueFactory<Secretary, String>("Email"));
         this.dateAbsence.setCellValueFactory(new PropertyValueFactory<Secretary, String>("AbsenceDate"));
-        this.duree.setCellValueFactory(new PropertyValueFactory<Secretary, String>("Period"));
         this.justifie.setCellValueFactory(new PropertyValueFactory<Secretary, String>("IsJustified"));
 
         // Inject to table
@@ -102,8 +101,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // Get absent students from database
         try {
             getAllAbsentStudents();
-            // Inject to table
-//            this.table.setItems(list);
 
         } catch (SQLException | ClassNotFoundException throwables) {
             System.out.println(throwables.getMessage());
@@ -126,7 +123,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 "  personne.surnom,\n" +
                 "  personne.email,\n" +
                 "  abscence.dateAbscence,\n" +
-                "  abscence.durree,\n" +
                 "  abscence.justif\n" +
                 "FROM personne\n" +
                 "\n" +
@@ -148,13 +144,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             String surnomQuery = queryResult.getString("surnom");
             String emailQuery = queryResult.getString("email");
             String dataAbsenceQuery = queryResult.getString("dateAbscence");
-            String dureeQuery = queryResult.getString("durree");
             String justifQuery = queryResult.getString("justif");
-
-            // Adding absenceId to rows arraylist
-            rows.add(Integer.parseInt(idAbsence));
-
-//            System.out.println("Absence ID: " + idAbsence);
 
             // create action buttons in justifie column in table
             Button btn = createActionButtons(idAbsence);
@@ -162,7 +152,10 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             // check if justifie is 0 A.K.A student absence is unjustified
             if (justifQuery.equals("0")) {
                 // create rows in table
-                list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, dureeQuery, btn));
+                list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, btn));
+
+                // Adding absenceId to rows arraylist
+                rows.add(Integer.parseInt(idAbsence));
             }
         }
     }
@@ -188,11 +181,9 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
         // Query that expect to be executed
         String query = "UPDATE abscence SET justif = 1 WHERE idAbscence = '" + absenceID + "';";
-//        System.out.println(query);
 
         Statement statement  = connection.createStatement();
         statement.executeUpdate(query);
-//        System.out.println("Database updated successfully ");
 
         // Close connection
         statement.close();
@@ -213,14 +204,13 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         this.title.setTranslateX(centerTitle);
 
         // resize columns based on window size
-        this.id.setPrefWidth(windowWidth/8);
-        this.prenom.setPrefWidth(windowWidth/8);
-        this.nom.setPrefWidth(windowWidth/8);
-        this.surnom.setPrefWidth(windowWidth/8);
-        this.email.setPrefWidth(windowWidth/8);
-        this.dateAbsence.setPrefWidth(windowWidth/8);
-        this.duree.setPrefWidth(windowWidth/8);
-        this.justifie.setPrefWidth(windowWidth/8);
+        this.id.setPrefWidth(windowWidth/7);
+        this.prenom.setPrefWidth(windowWidth/7);
+        this.nom.setPrefWidth(windowWidth/7);
+        this.surnom.setPrefWidth(windowWidth/7);
+        this.email.setPrefWidth(windowWidth/7);
+        this.dateAbsence.setPrefWidth(windowWidth/7);
+        this.justifie.setPrefWidth(windowWidth/7);
 
         // Get taskbar height
         Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -264,7 +254,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     // For refreshing table when student marked as justified
     public void refreshTable(int absenceID){
-        // using indexOf() to find index of 3
+        // using indexOf() to find index of absenceID
         int pos = rows.indexOf(absenceID);
 
         // request focus

@@ -14,19 +14,18 @@ public class Secretary {
     private SimpleStringProperty nickName;
     private SimpleStringProperty email;
     private SimpleStringProperty absenceDate;
-    private SimpleStringProperty period;
     private Button isJustified;
 
     // Constructor
     public Secretary(String id, String firstName, String lastName, String nickName, String email,
-                     String absenceDate, String period, Button btn) {
+                     String absenceDate, Button btn) {
         this.id = new SimpleStringProperty(id);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.nickName = new SimpleStringProperty(nickName);
         this.email = new SimpleStringProperty(email);
         this.absenceDate = new SimpleStringProperty(absenceDate);
-        this.period = new SimpleStringProperty(period);
+//        this.period = new SimpleStringProperty(period);
         this.isJustified = btn;
     }
 
@@ -53,10 +52,6 @@ public class Secretary {
 
     public String getAbsenceDate() {
         return absenceDate.get();
-    }
-
-    public String getPeriod() {
-        return period.get();
     }
 
     public Button getIsJustified() {
