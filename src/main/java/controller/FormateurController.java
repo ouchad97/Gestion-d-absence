@@ -1,36 +1,46 @@
 package controller;
 
-import dao.implDao.PersonneDao;
+import dao.implDao.FormateurImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
-import model.Personne;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.Formateur;
 
+import java.io.File;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class FormateurController {
+public class FormateurController implements Initializable {
 
-    @FXML
-    public TableColumn retard;
     @FXML
     public TableColumn abscence;
     @FXML
-    private BorderPane mainPanel;
-
+    private ImageView profileImg;
     @FXML
-    private TableView<Personne> tableApprenant;
+    private TableView<Formateur> tableApprenant;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        FormateurImpl data = new FormateurImpl();
+        try {
+            tableApprenant.setItems(data.getAll());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-    public void initialize() throws SQLException, ClassNotFoundException {
-        PersonneDao data = new PersonneDao();
-        tableApprenant.setItems(data.getAll());
-
-        TableColumn<Personne, CheckBox> column = (TableColumn<Personne, CheckBox>) tableApprenant.getColumns().get(2);
+        TableColumn<Formateur, CheckBox> column = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(2);
         column.setCellValueFactory(new CheckAbscentApprenant());
+
+
+
     }
+
+
 }
 

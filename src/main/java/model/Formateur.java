@@ -2,7 +2,7 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Personne {
+public class Formateur {
     private boolean isAbscent;
     private SimpleStringProperty id = new SimpleStringProperty("");
     private SimpleStringProperty nom = new SimpleStringProperty("");
@@ -12,7 +12,7 @@ public class Personne {
     private SimpleStringProperty motDePasse = new SimpleStringProperty("");
     private SimpleStringProperty role = new SimpleStringProperty("");
 
-    public Personne(Long id, String nom, String prenom, String surnom, String email, String motDePasse, String role) {
+    public Formateur(Long id, String nom, String prenom, String surnom, String email, String motDePasse, String role) {
         this.id.set(String.valueOf(id));
         this.nom.set(nom);
         this.prenom.set(prenom);
@@ -21,7 +21,7 @@ public class Personne {
         this.motDePasse.set(motDePasse);
         this.role.set(role);
     }
-    public Personne(){
+    public Formateur(){
 
     }
 

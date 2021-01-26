@@ -1,7 +1,7 @@
 package main;
 
 
-import dao.implDao.PersonneDao;
+import dao.implDao.FormateurImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +28,7 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         launch(args);
-        PersonneDao p = new PersonneDao();
+        FormateurImpl p = new FormateurImpl();
         System.out.println(p.getAll());
         System.out.println("javafx.version: " + System.getProperty("javafx.version"));
         System.out.println("java version: "+System.getProperty("java.version"));

@@ -1,28 +1,26 @@
 package dao.implDao;
 
-import dao.Dao;
+import dao.FormateurDao;
 import connection.DbConnect;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Personne;
+import model.Formateur;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PersonneDao implements Dao<Personne> {
+public class FormateurImpl implements FormateurDao<Formateur> {
 
     Statement statement = null;
 
     @Override
-    public Personne getIdPersonne(int idPersonne) {
+    public Formateur getIdPersonne(int idPersonne) {
         return null;
     }
 
     @Override
-    public ObservableList<Personne> getAll()throws ClassNotFoundException, SQLException {
+    public ObservableList<Formateur> getAll()throws ClassNotFoundException, SQLException {
 
-        ObservableList<Personne> perList = FXCollections.observableArrayList();
+        ObservableList<Formateur> perList = FXCollections.observableArrayList();
 
         DbConnect dbConnect = new DbConnect();
         Connection connectDb = dbConnect.getConnect();
@@ -43,7 +41,7 @@ public class PersonneDao implements Dao<Personne> {
                 String role = resultat.getString("role");
 
                 // Créer l'objet Personne
-                Personne p = new Personne(id, nom, prenom, surnom, email, motDePasse, role);
+                Formateur p = new Formateur(id, nom, prenom, surnom, email, motDePasse, role);
                 perList.add(p);
             }
         }
@@ -61,7 +59,7 @@ public class PersonneDao implements Dao<Personne> {
                                                                 ResultSet.TYPE_SCROLL_SENSITIVE,
                                                                 ResultSet.CONCUR_UPDATABLE);
         PreparedStatement preparedStmt = connectDb.prepareStatement(queryInsert);
-        preparedStmt.setInt (1, 16);
+        preparedStmt.setInt (1, 17);
         preparedStmt.setInt (2, 0);
         preparedStmt.execute();
 
