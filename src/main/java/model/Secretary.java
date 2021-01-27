@@ -17,9 +17,6 @@ public class Secretary {
     private SimpleStringProperty period;
     private Button isJustified;
 
-    // buttons that will be injected to justifie column
-    ArrayList<Button> btnsList = new ArrayList<Button>();
-
     // Constructor
     public Secretary(String id, String firstName, String lastName, String nickName, String email,
                      String absenceDate, String period, Button btn) {
@@ -66,12 +63,5 @@ public class Secretary {
         return isJustified;
     }
 
-//    public ArrayList<Button> getBtnsList() {
-//        return btnsList;
-//    }
-//
-//    public void setBtnsList(ArrayList<Button> btnsList) {
-//        this.btnsList = btnsList;
-//    }
 }
 
