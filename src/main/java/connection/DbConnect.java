@@ -1,5 +1,6 @@
 package connection;
 
+<<<<<<< HEAD
 import java.sql.*;
 
 //public class DbConnect {
@@ -19,6 +20,8 @@ import java.sql.*;
 //    }
 //}
 
+=======
+>>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
 import java.sql.Connection;
 import java.sql.DriverManager;
 public class DbConnect {
@@ -26,8 +29,13 @@ public class DbConnect {
 
     public Connection getConnect() {
         String dbUser = "root";
+<<<<<<< HEAD
         String dbPass = "";
         String url = "jdbc:mysql://localhost:3306/gestion_absence?autoReconnect=true&useSSL=false";
+=======
+        String dbPass = "root";
+        String url = "jdbc:mysql://localhost:3306/gestiondabscence?autoReconnect=true&useSSL=false";
+>>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,3 +48,8 @@ public class DbConnect {
         return dbLink;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
