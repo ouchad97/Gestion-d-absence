@@ -1,5 +1,6 @@
 package connection;
 
+<<<<<<< HEAD
 import java.sql.*;
 
 //public class DbConnect {
@@ -41,3 +42,32 @@ public class DbConnect {
     }
 }
 
+=======
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DbConnect {
+
+	static Connection dbLink = null;
+
+	// Connexion
+	public static Connection getConnect() throws ClassNotFoundException, SQLException {
+		 String url = "jdbc:mysql://localhost:8000/GestionAbsence";
+		 String dbUser = "root";
+		 String dbPass = "admin";
+		 
+		 try {
+			 dbLink = DriverManager.getConnection(url, dbUser, dbPass);
+		 }catch (Exception e) {
+	            e.printStackTrace();
+	            e.getCause();
+	        }
+		return dbLink;
+	}
+	
+	
+
+
+}
+>>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8
