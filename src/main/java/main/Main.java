@@ -9,10 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.sql.SQLException;
->>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
 
 public class Main extends Application {
 

@@ -151,9 +151,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             String dureeQuery = queryResult.getString("durree");
             String justifQuery = queryResult.getString("justif");
 
-            // Adding absenceId to rows arraylist
-            rows.add(Integer.parseInt(idAbsence));
-
 //            System.out.println("Absence ID: " + idAbsence);
 
             // create action buttons in justifie column in table
@@ -163,6 +160,9 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             if (justifQuery.equals("0")) {
                 // create rows in table
                 list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, dureeQuery, btn));
+
+                // Adding absenceId to rows arraylist
+                rows.add(Integer.parseInt(idAbsence));
             }
         }
     }
@@ -188,11 +188,9 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
         // Query that expect to be executed
         String query = "UPDATE abscence SET justif = 1 WHERE idAbscence = '" + absenceID + "';";
-//        System.out.println(query);
 
         Statement statement  = connection.createStatement();
         statement.executeUpdate(query);
-//        System.out.println("Database updated successfully ");
 
         // Close connection
         statement.close();
@@ -264,7 +262,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     // For refreshing table when student marked as justified
     public void refreshTable(int absenceID){
-        // using indexOf() to find index of 3
+        // using indexOf() to find index of absenceID
         int pos = rows.indexOf(absenceID);
 
         // request focus
