@@ -14,7 +14,7 @@ public class DaoApprenantImp implements DaoApprenant {
 	//selection
 	@Override
 	public Apprenant getApprenantById(int idPersonne) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	
 		Apprenant apprenant = null;
 
 		String requete = "Select * From Apprenant Where idPersonne= ?";
@@ -75,7 +75,6 @@ public class DaoApprenantImp implements DaoApprenant {
 		}
 		
 	// suppression
-		// suppression
 		@Override
 		public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException {
 			String r1 = "Delete from Apprenant Where idPersonne = "+idPersonne+"";

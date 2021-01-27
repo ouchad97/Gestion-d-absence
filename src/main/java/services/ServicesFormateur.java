@@ -14,7 +14,7 @@ public static List<Formateur> formateur = new ArrayList<Formateur>();
 	
 	
 	public static DaoFormateur daoFormateur = new DaoFormateurImp();
-	// getApprenant Id
+	// getFormateur Id
 			public static Formateur getFormateurById(int idPersonne) throws ClassNotFoundException, SQLException {
 				return daoFormateur.getFormateurById(idPersonne);
 			}
@@ -25,7 +25,7 @@ public static List<Formateur> formateur = new ArrayList<Formateur>();
 				return daoFormateur.AddFormateur(idPersonne, nom, prenom, surnom, email, motDePasse, role, idSalle, idPromotion);
 			}
 			
-			// modifier personne
+			// modifier 
 			public static void updatFormateur(int idPersonne, String nom, String prenom, String surnom, String email,
 					String motDePasse, String role, int idSalle, int idPromotion ) throws ClassNotFoundException, SQLException {
 				daoFormateur.updateFormateur(idPersonne, nom, prenom, surnom, email, motDePasse, role, idSalle, idPromotion);

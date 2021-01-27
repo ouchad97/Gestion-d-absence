@@ -144,8 +144,6 @@ public class AdministrateurController {
 	}
 
 	// Ajout
-	final Apprenant apprenant = new Apprenant();
-	final Personne personne = new Personne();
 
 	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
 
@@ -177,9 +175,8 @@ public class AdministrateurController {
 				e1.printStackTrace();
 			}
 		} else {
-			
-			
-			if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur" ) {
+
+			if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur") {
 
 				try {
 					Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()),
@@ -206,12 +203,13 @@ public class AdministrateurController {
 					e1.printStackTrace();
 				}
 			}
-			
+
 			if (cmbx_role.getValue() == "Formateur") {
 				try {
 					Formateur formateur = ServicesFormateur.AddFormateur(Integer.parseInt(Txt_id.getText()),
 							Txt_nom.getText(), Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(),
-							Txt_password.getText(), cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue());
+							Txt_password.getText(), cmbx_role.getValue(), cmbx_Salle.getValue(),
+							cmbx_Promotion.getValue());
 
 					// Refresh Table
 					List<Personne> personnes = new ArrayList<Personne>();
@@ -219,9 +217,9 @@ public class AdministrateurController {
 
 					data = FXCollections.observableArrayList();
 					for (Personne newpersonne : personnes) {
-						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
-								newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
-								newpersonne.getRole()));
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(),
+								newpersonne.getPrenom(), newpersonne.getSurnom(), newpersonne.getEmail(),
+								newpersonne.getMotDePasse(), newpersonne.getRole()));
 					}
 					if (data != null) {
 						Tbl_Personne.setItems(data);
@@ -233,7 +231,7 @@ public class AdministrateurController {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
 
@@ -266,9 +264,8 @@ public class AdministrateurController {
 				e1.printStackTrace();
 			}
 		} else {
-			
-			
-			if (cmbx_role.getValue() == "Secretaire"  || cmbx_role.getValue() == "Administrateur") {
+
+			if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur") {
 				try {
 					ServicePersonne.updatPerson(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
 							Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
@@ -293,7 +290,7 @@ public class AdministrateurController {
 					e1.printStackTrace();
 				}
 			}
-			
+
 			if (cmbx_role.getValue() == "Formateur") {
 				try {
 					ServicesFormateur.updatFormateur(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
@@ -306,9 +303,9 @@ public class AdministrateurController {
 
 					data = FXCollections.observableArrayList();
 					for (Personne newpersonne : personnes) {
-						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
-								newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
-								newpersonne.getRole()));
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(),
+								newpersonne.getPrenom(), newpersonne.getSurnom(), newpersonne.getEmail(),
+								newpersonne.getMotDePasse(), newpersonne.getRole()));
 					}
 					if (data != null) {
 						Tbl_Personne.setItems(data);
@@ -322,7 +319,7 @@ public class AdministrateurController {
 		}
 	}
 
-	// Delete Apprenant
+	// Delete 
 	@FXML
 	public void ClickSupp(ActionEvent event) throws ClassNotFoundException, SQLException {
 		try {

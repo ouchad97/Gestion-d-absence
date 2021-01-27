@@ -21,35 +21,7 @@ public class DaoLoginImp  implements DaoLogin{
 	Statement statement = null;
 	public static int id_Session = 0;
 
-	@Override
-	public List<Personne> getAll() throws ClassNotFoundException, SQLException {
-		List<Personne> personnes = new ArrayList<Personne>();
-
-		statement = DbConnect.getConnect().createStatement();
-		System.out.println("cr�ation de l'objet Statement");
-
-		// 4- selectionner la table personnes
-		ResultSet resultat;
-		String requete = "Select * From Personne";
-
-		resultat = statement.executeQuery(requete);
-
-		while (resultat.next()) {
-			int id = resultat.getInt("idPersonne");
-			String nom = resultat.getString("nom");
-			String prenom = resultat.getString("prenom");
-			String surnom = resultat.getString("surnom");
-			String email = resultat.getString("email");
-			String motDePasse = resultat.getString("motDePasse");
-			String role = resultat.getString("role");
-
-			// Creer l'objet Personne
-			Personne p = new Personne(id, nom, prenom, surnom, email, motDePasse, role);
-			personnes.add(p);
-		}
-
-		return personnes;
-	}
+	
 
 	public static  Personne login(String email, String motDePasse) throws ClassNotFoundException, SQLException {
 		Personne user = null;
