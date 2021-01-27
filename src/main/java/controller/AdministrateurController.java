@@ -111,19 +111,21 @@ public class AdministrateurController {
 		cmbx_role.getItems().addAll("Apprenant", "Formateur", "Secretaire", "Administrateur");
 		cmbx_role.setValue("Selectionnez type de profile");
 
+		// combobox Salle
+		cmbx_Salle.getItems().addAll(1, 2, 3, 4, 5, 6);
+		cmbx_SalleF.getItems().addAll(1, 2, 3, 4, 5, 6);
+		// cmbx_Salle.setValue("Selectionnez une salle");
+		// combobox Promotion
+		cmbx_Promotion.getItems().addAll(1, 2, 3);
+		cmbx_PromotionF.getItems().addAll(1, 2, 3);
+
 		// Create column and get info's
 		idPersonneCol.setCellValueFactory(new PropertyValueFactory<Personne, Integer>("idPersonne"));
-
 		nomCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("nom"));
-
 		prenomCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("prenom"));
-
 		surnomCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("surnom"));
-
 		emailCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("email"));
-
 		passwordCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("motDePasse"));
-
 		roleCol.setCellValueFactory(new PropertyValueFactory<Personne, String>("role"));
 
 		List<Personne> personnes = new ArrayList<Personne>();
@@ -141,21 +143,209 @@ public class AdministrateurController {
 		}
 	}
 
-	// Add new personne
-	final Personne personne = new Personne();
+	// Ajout
 	final Apprenant apprenant = new Apprenant();
+	final Personne personne = new Personne();
 
 	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
+
+		if (cmbx_role.getValue() == "Apprenant") {
+
+			try {
+				Apprenant apprenant = ServicesApprenant.AddApprenant(Integer.parseInt(Txt_id.getText()),
+						Txt_nom.getText(), Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(),
+						Txt_password.getText(), cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue(),
+						Txt_referentiel.getText());
+
+				// Refresh Table
+				List<Personne> personnes = new ArrayList<Personne>();
+				personnes = ServicePersonne.getAllPersonnes();
+
+				data = FXCollections.observableArrayList();
+				for (Personne newpersonne : personnes) {
+					data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+							newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+							newpersonne.getRole()));
+				}
+				if (data != null) {
+					Tbl_Personne.setItems(data);
+				} else {
+					System.out.println("Erreur data null");
+				}
+
+			} catch (ClassNotFoundException | SQLException e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			
+			
+			if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur" ) {
+
+				try {
+					Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()),
+							Txt_nom.getText(), Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(),
+							Txt_password.getText(), cmbx_role.getValue());
+
+					// Refresh
+					List<Personne> personnes = new ArrayList<Personne>();
+					personnes = ServicePersonne.getAllPersonnes();
+
+					data = FXCollections.observableArrayList();
+					for (Personne newpersonne : personnes) {
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(),
+								newpersonne.getPrenom(), newpersonne.getSurnom(), newpersonne.getEmail(),
+								newpersonne.getMotDePasse(), newpersonne.getRole()));
+					}
+					if (data != null) {
+						Tbl_Personne.setItems(data);
+					} else {
+						System.out.println("Erreur data null");
+					}
+
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if (cmbx_role.getValue() == "Formateur") {
+				try {
+					Formateur formateur = ServicesFormateur.AddFormateur(Integer.parseInt(Txt_id.getText()),
+							Txt_nom.getText(), Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(),
+							Txt_password.getText(), cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue());
+
+					// Refresh Table
+					List<Personne> personnes = new ArrayList<Personne>();
+					personnes = ServicePersonne.getAllPersonnes();
+
+					data = FXCollections.observableArrayList();
+					for (Personne newpersonne : personnes) {
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+								newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+								newpersonne.getRole()));
+					}
+					if (data != null) {
+						Tbl_Personne.setItems(data);
+					} else {
+						System.out.println("Erreur data null");
+					}
+
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		}
+	}
+
+	// modif
+	@FXML
+	public void ClickModif(ActionEvent event) throws ClassNotFoundException, SQLException {
+		if (cmbx_role.getValue() == "Apprenant") {
+			try {
+				ServicesApprenant.updatApprenant(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+						Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+						cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue(),
+						Txt_referentiel.getText());
+
+				// Refresh
+				List<Personne> personnes = new ArrayList<Personne>();
+				personnes = ServicePersonne.getAllPersonnes();
+
+				data = FXCollections.observableArrayList();
+				for (Personne newpersonne : personnes) {
+					data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+							newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+							newpersonne.getRole()));
+				}
+				if (data != null) {
+					Tbl_Personne.setItems(data);
+				} else {
+					System.out.println("Erreur data null");
+				}
+			} catch (ClassNotFoundException | SQLException e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			
+			
+			if (cmbx_role.getValue() == "Secretaire"  || cmbx_role.getValue() == "Administrateur") {
+				try {
+					ServicePersonne.updatPerson(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+							Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+							cmbx_role.getValue());
+
+					// Refresh
+					List<Personne> personnes = new ArrayList<Personne>();
+					personnes = ServicePersonne.getAllPersonnes();
+
+					data = FXCollections.observableArrayList();
+					for (Personne newpersonne : personnes) {
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(),
+								newpersonne.getPrenom(), newpersonne.getSurnom(), newpersonne.getEmail(),
+								newpersonne.getMotDePasse(), newpersonne.getRole()));
+					}
+					if (data != null) {
+						Tbl_Personne.setItems(data);
+					} else {
+						System.out.println("Erreur data null");
+					}
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if (cmbx_role.getValue() == "Formateur") {
+				try {
+					ServicesFormateur.updatFormateur(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
+							Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
+							cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue());
+
+					// Refresh
+					List<Personne> personnes = new ArrayList<Personne>();
+					personnes = ServicePersonne.getAllPersonnes();
+
+					data = FXCollections.observableArrayList();
+					for (Personne newpersonne : personnes) {
+						data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
+								newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
+								newpersonne.getRole()));
+					}
+					if (data != null) {
+						Tbl_Personne.setItems(data);
+					} else {
+						System.out.println("Erreur data null");
+					}
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+
+	// Delete Apprenant
+	@FXML
+	public void ClickSupp(ActionEvent event) throws ClassNotFoundException, SQLException {
 		try {
-			Apprenant apprenant = ServicePersonne.TestAJout(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
-					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
-					cmbx_role.getValue(), 1, 1, Txt_referentiel.getText());
-
-//					ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
-//					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
-//					cmbx_role.getValue());
-
+			if (cmbx_role.getValue() == "Apprenant") {
+				ServicesApprenant.deletePerson(Integer.parseInt(Txt_id.getText()));
+			} else {
+				if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur") {
+					ServicePersonne.deletePerson(Integer.parseInt(Txt_id.getText()));
+				}
+				if (cmbx_role.getValue() == "Formateur") {
+					ServicesFormateur.deletePerson(Integer.parseInt(Txt_id.getText()));
+				}
+			}
 			// Refresh
+			Txt_id.setText("");
+			Txt_nom.setText("");
+			Txt_prenom.setText("");
+			Txt_surnom.setText("");
+			Txt_email.setText("");
+			Txt_password.setText("");
+			cmbx_role.setValue("Selectionnez type de profile");
+			Txt_referentiel.setText("");
+
 			List<Personne> personnes = new ArrayList<Personne>();
 			personnes = ServicePersonne.getAllPersonnes();
 
@@ -170,38 +360,10 @@ public class AdministrateurController {
 			} else {
 				System.out.println("Erreur data null");
 			}
-
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
-
-//	public void ClickAjout(ActionEvent event) throws ClassNotFoundException, SQLException {
-//		try {
-//			Personne personne = ServicePersonne.addPersonne(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
-//					Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
-//					cmbx_role.getValue());
-//
-//			// Refresh
-//			List<Personne> personnes = new ArrayList<Personne>();
-//			personnes = ServicePersonne.getAllPersonnes();
-//
-//			data = FXCollections.observableArrayList();
-//			for (Personne newpersonne : personnes) {
-//				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
-//						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
-//						newpersonne.getRole()));
-//			}
-//			if (data != null) {
-//				Tbl_Personne.setItems(data);
-//			} else {
-//				System.out.println("Erreur data null");
-//			}
-//
-//		} catch (ClassNotFoundException | SQLException e1) {
-//			e1.printStackTrace();
-//		}
-//	}
 
 	// select from table to textfield
 	@FXML
@@ -220,13 +382,12 @@ public class AdministrateurController {
 			if (cmbx_role.getValue() == "Apprenant") {
 				cmbx_Salle.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdSalle());
 				cmbx_Promotion.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdPromotion());
+				Txt_referentiel.setText(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getReferentiel());
 			} else {
 				cmbx_Salle.setValue(1);
 				cmbx_Promotion.setValue(1);
 			}
-
 		}
-
 	}
 
 	// SelectComboboxRole and change Anchor's
@@ -247,67 +408,6 @@ public class AdministrateurController {
 		}
 	}
 
-	// Update personne
-	@FXML
-	public void ClickModif(ActionEvent event) throws ClassNotFoundException, SQLException {
-		try {
-			ServicePersonne.updatPerson(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(), Txt_prenom.getText(),
-					Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(), cmbx_role.getValue());
-
-			// Refresh
-			List<Personne> personnes = new ArrayList<Personne>();
-			personnes = ServicePersonne.getAllPersonnes();
-
-			data = FXCollections.observableArrayList();
-			for (Personne newpersonne : personnes) {
-				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
-						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
-						newpersonne.getRole()));
-			}
-			if (data != null) {
-				Tbl_Personne.setItems(data);
-			} else {
-				System.out.println("Erreur data null");
-			}
-		} catch (ClassNotFoundException | SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
-
-	// Delete personne
-	@FXML
-	public void ClickSupp(ActionEvent event) throws ClassNotFoundException, SQLException {
-		try {
-			ServicePersonne.deletePerson(Integer.parseInt(Txt_id.getText()));
-
-			// Refresh
-			Txt_id.setText("");
-			Txt_nom.setText("");
-			Txt_prenom.setText("");
-			Txt_surnom.setText("");
-			Txt_email.setText("");
-			Txt_password.setText("");
-			cmbx_role.setValue("Selectionnez type de profile");
-
-			List<Personne> personnes = new ArrayList<Personne>();
-			personnes = ServicePersonne.getAllPersonnes();
-
-			data = FXCollections.observableArrayList();
-			for (Personne newpersonne : personnes) {
-				data.add(new Personne(newpersonne.getIdPersonne(), newpersonne.getNom(), newpersonne.getPrenom(),
-						newpersonne.getSurnom(), newpersonne.getEmail(), newpersonne.getMotDePasse(),
-						newpersonne.getRole()));
-			}
-			if (data != null) {
-				Tbl_Personne.setItems(data);
-			} else {
-				System.out.println("Erreur data null");
-			}
-		} catch (ClassNotFoundException | SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
-
 	// Button Vider
 	@FXML
 	void ClickVider(ActionEvent event) throws ClassNotFoundException, SQLException {
@@ -319,6 +419,7 @@ public class AdministrateurController {
 		Txt_email.setText("");
 		Txt_password.setText("");
 		cmbx_role.setValue("Selectionnez type de profile");
+		Txt_referentiel.setText("");
 
 	}
 }

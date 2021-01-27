@@ -20,11 +20,5 @@ public interface DaoPersonne {
 
 	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException;
 
-	
-	public Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email, String motDePasse,
-			String role,int idSalle, int idPromotion, String referentiel)throws ClassNotFoundException, SQLException;
-
-
-	
 
 }

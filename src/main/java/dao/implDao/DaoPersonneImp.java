@@ -129,32 +129,6 @@ public class DaoPersonneImp implements DaoPersonne {
 		return statement.executeUpdate();
 	}
 
-	@Override
-	public Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email,
-			String motDePasse, String role, int idSalle, int idPromotion, String referentiel)
-			throws ClassNotFoundException, SQLException {
-
-		Apprenant reponse = null;
-
-		Statement statement = null;
-		String r1 = "INSERT INTO Personne (idPersonne, nom, prenom, surnom, email, motDePasse, role) Values" + "("
-				+ idPersonne + ", '" + nom + "', '" + prenom + "', '" + surnom + "', '" + email + "', '" + motDePasse
-				+ "', '" + role + "')";
-		String r2 = "INSERT INTO Apprenant (idPersonne, idSalle, idPromotion, referentiel) VALUES" + "(" + idPersonne
-				+ ", " + idSalle + ", " + idPromotion + ", '" + referentiel + "')";
-
-		try {
-			statement = DbConnect.getConnect().createStatement();
-			statement.addBatch(r1);
-			statement.addBatch(r2);
-			statement.executeBatch();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		System.out.print(r2);
-		return reponse;
-	}
 
 
 }

@@ -43,11 +43,6 @@ public class ServicePersonne {
 		daoPersonne.deleteById(idPersonne);
 	}
 
-	public static Apprenant TestAJout(int idPersonne, String nom, String prenom, String surnom, String email,
-			String motDePasse, String role, int idSalle, int idPromotion ,String referentiel) throws ClassNotFoundException, SQLException {
-
-		return daoPersonne.TestAJout(idPersonne, nom, prenom, surnom, email, motDePasse, role, idSalle, idPromotion, referentiel);
-	}
 	
 	
 	
