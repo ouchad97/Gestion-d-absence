@@ -66,12 +66,12 @@ public class Secretary {
         return isJustified;
     }
 
-    public ArrayList<Button> getBtnsList() {
-        return btnsList;
-    }
-
-    public void setBtnsList(ArrayList<Button> btnsList) {
-        this.btnsList = btnsList;
-    }
+//    public ArrayList<Button> getBtnsList() {
+//        return btnsList;
+//    }
+//
+//    public void setBtnsList(ArrayList<Button> btnsList) {
+//        this.btnsList = btnsList;
+//    }
 }
 
