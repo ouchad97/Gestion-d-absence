@@ -1,6 +1,7 @@
 package connection;
 
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
+=========
 import java.sql.*;
 
 //public class DbConnect {
@@ -20,8 +21,7 @@ import java.sql.*;
 //    }
 //}
 
-=======
->>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
+>>>>>>>>> Temporary merge branch 2
 import java.sql.Connection;
 import java.sql.DriverManager;
 public class DbConnect {
@@ -29,13 +29,13 @@ public class DbConnect {
 
     public Connection getConnect() {
         String dbUser = "root";
-<<<<<<< HEAD
-        String dbPass = "";
-        String url = "jdbc:mysql://localhost:3306/gestion_absence?autoReconnect=true&useSSL=false";
-=======
+<<<<<<<<< Temporary merge branch 1
         String dbPass = "root";
         String url = "jdbc:mysql://localhost:3306/gestiondabscence?autoReconnect=true&useSSL=false";
->>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
+=========
+        String dbPass = "";
+        String url = "jdbc:mysql://localhost:3306/gestion_absence?autoReconnect=true&useSSL=false";
+>>>>>>>>> Temporary merge branch 2
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -48,8 +48,8 @@ public class DbConnect {
         return dbLink;
     }
 }
-<<<<<<< HEAD
-=======
+<<<<<<<<< Temporary merge branch 1
 
 
->>>>>>> 423d6a830f2f6bd553b19338fc9f2fe8cb9534f5
+=========
+>>>>>>>>> Temporary merge branch 2
