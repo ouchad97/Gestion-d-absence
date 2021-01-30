@@ -7,10 +7,12 @@
     <groupId>org.example</groupId>
     <artifactId>gestionDabscence</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
@@ -48,7 +50,6 @@
             <version>16-ea+6</version>
         </dependency>
 
-
         <!-- For JavaFx Graphics -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -62,6 +63,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.23</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>

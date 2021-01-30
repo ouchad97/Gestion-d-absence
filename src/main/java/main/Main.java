@@ -1,6 +1,5 @@
 package main;
 
-
 import dao.implDao.FormateurImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

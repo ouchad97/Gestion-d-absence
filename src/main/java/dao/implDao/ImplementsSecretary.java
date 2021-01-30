@@ -5,6 +5,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import model.Secretary;
 
@@ -63,8 +65,15 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     @FXML
     private TableColumn<Secretary, String> justifie;
 
+    // table title
     @FXML
     private Label title;
+
+    // For teachers combobox and teachers list
+    @FXML
+    private ComboBox<String> teacherComboBox;
+    ObservableList<String> teachersList;
+    ArrayList<Integer> teachersListIndexes = new ArrayList<Integer>();
 
     // buttons that will be injected to justifie column
     ArrayList<Button> btnsList = new ArrayList<Button>();
@@ -75,9 +84,19 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     // For storing row id's
     ArrayList<Integer> rows = new ArrayList<Integer>();
 
+    // initialize
+    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+    // set main window size
+    double windowWidth = 0f;
+    double windowHeight = 0f;
+
     // Constructor
     public ImplementsSecretary() {
         super();
+
+        windowWidth = screenBounds.getWidth();
+        windowHeight = screenBounds.getHeight();
     }
 
     // this method will run automatically when interface has loaded completely
@@ -98,9 +117,14 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // Inject to table
         this.table.setItems(list);
 
-        // Get absent students from database
         try {
+            // Get teacher from db and create them
+            createTeacher();
+
+            // Get absent students from database
             getAllAbsentStudents();
+
+            showArray();
 
         } catch (SQLException | ClassNotFoundException throwables) {
             System.out.println(throwables.getMessage());
@@ -130,7 +154,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 "  ON personne.idPersonne = association4.idPersonne\n" +
                 "  \n" +
                 "JOIN abscence\n" +
-                "  ON abscence.idAbscence = association4.idAbscence;";
+                "  ON abscence.idAbscence = association4.idAbscence ORDER BY dateAbscence DESC;;";
 
         Statement statement = connection.createStatement();
         ResultSet queryResult = statement.executeQuery(query);
@@ -189,16 +213,138 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         statement.close();
     }
 
+    // Create teacher combobox with their names
+    @Override
+    public void createTeacher() throws SQLException {
+        // create teachers list
+        teachersList = FXCollections.observableArrayList();
+
+        // Instantiate DbConnect and connect to database
+        DbConnect dbConnect = new DbConnect();
+        Connection connection = dbConnect.getConnect();
+
+        // Query that should be get teachers from db
+        String query = "SELECT * FROM personne WHERE role = 'teacher';";
+
+        Statement statement = connection.createStatement();
+        ResultSet queryResult = statement.executeQuery(query);
+
+        // Iterate through db rows
+        while(queryResult.next()) {
+            // Add teacher to teachersList
+            teachersList.add(queryResult.getString("prenom"));
+
+            // add teacher indexes aka id's
+            Integer teacherID = queryResult.getInt(1);
+            teachersListIndexes.add(teacherID);
+        }
+
+        // Inject teacher to teacherComboBox
+        teacherComboBox.setItems(teachersList);
+    }
+
+    // when secretary select a teacher
+    @Override
+    public void loadStudentsByTeacher() throws SQLException {
+        // reset table and clear row data aka row id's
+        list.clear();
+        rows.clear();
+
+        // Get selected teacher
+//        String selectedTeacher = teacherComboBox.getSelectionModel().getSelectedItem();
+        int selectedTeacherIndex = teacherComboBox.getSelectionModel().getSelectedIndex();
+        int teacherID = 0;
+
+        // show selected teacher
+//        System.out.println("Selected Teacher is : " + selectedTeacher);
+//        System.out.println("Selected Teacher index : " + selectedTeacherIndex);
+
+        // reading teacher id's
+//        System.out.print("Teachers Indexes: ");
+//        for (int i = 0; i < teachersListIndexes.size(); i++) {
+//            System.out.print(teachersListIndexes.get(i));
+//            System.out.print(" ");
+//        }
+
+//        System.out.println("");
+
+
+        // set teacher id
+        for (int i = 0; i < teachersListIndexes.size(); i++) {
+            if (i == selectedTeacherIndex) {
+                teacherID = teachersListIndexes.get(i);
+            }
+        }
+
+
+//        System.out.println("TeacherID: " + teacherID);
+
+        // Instantiate DbConnect and connect to database
+        DbConnect dbConnect = new DbConnect();
+        Connection connection = dbConnect.getConnect();
+
+        // Query that should be run
+        String query = "SELECT\n" +
+                "    abscence.idAbscence,\n" +
+                "    personne.nom,\n" +
+                "    personne.prenom,\n" +
+                "    personne.surnom,\n" +
+                "    personne.email,\n" +
+                "    abscence.dateAbscence,\n" +
+                "    abscence.justif\n" +
+                "FROM\n" +
+                "    apprenant,\n" +
+                "    personne,\n" +
+                "    association4,\n" +
+                "    abscence\n" +
+                "WHERE\n" +
+                "    apprenant.idPersonne = personne.idPersonne\n" +
+                "    AND personne.idPersonne = association4.idPersonne\n" +
+                "    AND abscence.idAbscence = association4.idAbscence\n" +
+                "    AND apprenant.idFormateur = " + teacherID + " ORDER BY dateAbscence DESC;";
+
+//        System.out.println(query);
+        Statement statement = connection.createStatement();
+        ResultSet queryResult = statement.executeQuery(query);
+
+        // Iterate through db rows
+        while(queryResult.next()) {
+//            String idQuery = queryResult.getString("idPersonne");
+            String idAbsence = queryResult.getString("idAbscence");
+            String prenomQuery = queryResult.getString("prenom");
+            String nomQuery = queryResult.getString("nom");
+            String surnomQuery = queryResult.getString("surnom");
+            String emailQuery = queryResult.getString("email");
+            String dataAbsenceQuery = queryResult.getString("dateAbscence");
+            String justifQuery = queryResult.getString("justif");
+
+            // create action buttons in justifie column in table
+            Button btn = createActionButtons(idAbsence);
+
+            // check if justifie is 0 A.K.A student absence is unjustified
+            if (justifQuery.equals("0")) {
+                // create rows in table
+                list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, btn));
+                System.out.println(idAbsence + "\t" + prenomQuery + "\t" + nomQuery + "\t" + surnomQuery + emailQuery + "\t" + dataAbsenceQuery + "\t" + justifQuery);
+
+                // Adding absenceId to rows arraylist
+                rows.add(Integer.parseInt(idAbsence));
+
+//                System.out.println("done !");
+            }
+        }
+
+        // elements
+//        for (Secretary row : list) {
+//            System.out.println("Row: " + row);
+//        }
+
+        showArray();
+    }
+
     // Initialize basic style for table
     @Override
     public void initTableWindowStyle() {
-        // initialize
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-
-        // set main window size
-        double windowWidth = screenBounds.getWidth();
-        double windowHeight = screenBounds.getHeight();
-
         // center table title
         double centerTitle = (windowWidth / 2) / 2;
         this.title.setTranslateX(centerTitle);
@@ -257,19 +403,52 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // using indexOf() to find index of absenceID
         int pos = rows.indexOf(absenceID);
 
+        System.out.println("Position: " + pos);
+
+        System.out.print("Elements: ");
+        for (Integer row : rows) {
+            System.out.print(row);
+            System.out.print(" ");
+        }
+
+        System.out.println("");
+
         // request focus
         table.requestFocus();
 
         // select that row
         table.getSelectionModel().select(pos);
+        System.out.println("Select : " + pos);
 
         // remove selected row
         table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+//        table.getItems().remove(pos);
+        System.out.println("getItem(): " + table.getSelectionModel().getSelectedItem());
 
         // clear selection
         table.getSelectionModel().clearSelection();
 
         // remove that element from array
         rows.remove(pos);
+        System.out.println("remove index: " + pos);
+
+        // new elements
+        System.out.print("New Elements: ");
+        for (Integer row : rows) {
+            System.out.print(row);
+            System.out.print(" ");
+        }
+
+        System.out.println("");
+    }
+
+    private void showArray() {
+        System.out.println("Elements: ");
+        for (int i = 0; i < rows.size(); i++) {
+            System.out.print(rows.get(i));
+            System.out.print("");
+        }
+
+        System.out.println("");
     }
 }
