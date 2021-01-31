@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -28,7 +29,7 @@ public class LoginController {
 	private TextField TxtEmail;
 
 	@FXML
-	private TextField TxtMdps;
+	private PasswordField  TxtMdps;
 
 	@FXML
 	private Button btnLogin;
