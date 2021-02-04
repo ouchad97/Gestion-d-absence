@@ -42,21 +42,16 @@
             <Image url="@icons/email.png" />
          </image>
       </ImageView>
-      <Text layoutX="108.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :">
+      <Text layoutX="108.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email                  :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="107.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surnom :">
+      <Text layoutX="108.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surnom              :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <ImageView layoutX="55.0" layoutY="121.0">
-         <image>
-            <Image url="@icons/idea.png" />
-         </image>
-      </ImageView>
       <Text layoutX="26.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List D'absence :">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
@@ -67,18 +62,18 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Label_Email" layoutX="156.0" layoutY="170.0" prefHeight="18.0" prefWidth="317.0" text="Example@gmail.com">
+      <Label fx:id="Label_Email" layoutX="229.0" layoutY="168.0" prefHeight="18.0" prefWidth="317.0" text="Example@gmail.com">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Label_Surnom" layoutX="172.0" layoutY="133.0" prefHeight="18.0" prefWidth="269.0" text="Surnom">
+      <Label fx:id="Label_Surnom" layoutX="229.0" layoutY="126.0" prefHeight="18.0" prefWidth="269.0" text="Surnom">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
       <Button fx:id="btn_deconnect" layoutX="760.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Deconnect" />
-      <Text layoutX="107.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role :">
+      <Text layoutX="107.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role                    :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
@@ -88,22 +83,17 @@
             <Image url="@icons/idea.png" />
          </image>
       </ImageView>
-      <Label fx:id="Label_role" layoutX="172.0" layoutY="201.0" prefHeight="18.0" prefWidth="269.0" text="Apprenant">
+      <Label fx:id="Label_role" layoutX="229.0" layoutY="200.0" prefHeight="18.0" prefWidth="269.0" text="Apprenant">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <Text layoutX="525.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle :">
+      <Text layoutX="525.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle           :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <ImageView layoutX="473.0" layoutY="130.0">
-         <image>
-            <Image url="@icons/idea.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="Label_salle" layoutX="590.0" layoutY="142.0" prefHeight="18.0" prefWidth="269.0" text="1">
+      <Label fx:id="Label_salle" layoutX="618.0" layoutY="150.0" prefHeight="18.0" prefWidth="269.0" text="1">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -113,27 +103,17 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <ImageView layoutX="473.0" layoutY="88.0">
-         <image>
-            <Image url="@icons/idea.png" />
-         </image>
-      </ImageView>
       <Label fx:id="Label_promo" layoutX="618.0" layoutY="100.0" prefHeight="18.0" prefWidth="269.0" text="1">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Label>
-      <Text layoutX="525.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referance :">
+      <Text layoutX="525.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referance  :">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <ImageView layoutX="473.0" layoutY="179.0">
-         <image>
-            <Image url="@icons/idea.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="Label_referance" layoutX="618.0" layoutY="190.0" prefHeight="18.0" prefWidth="269.0" text="Develepeur Web et Mobile">
+      <Label fx:id="Label_referance" layoutX="617.0" layoutY="191.0" prefHeight="18.0" prefWidth="269.0" text="Develepeur Web et Mobile">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -148,5 +128,25 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Label>
+      <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="471.0" layoutY="91.0">
+         <image>
+            <Image url="@icons/graduation-hat.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="474.0" layoutY="147.0">
+         <image>
+            <Image url="@icons/education.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="32.0" layoutX="474.0" layoutY="178.0">
+         <image>
+            <Image url="@icons/refer.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="53.0" layoutY="120.0">
+         <image>
+            <Image url="@icons/name.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
