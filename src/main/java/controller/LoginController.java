@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import model.Administrateur;
-import model.Apprenant;
+import model.Apprenant2;
 import model.Formateur;
 import model.Personne;
 import dao.*;
@@ -78,7 +78,7 @@ public class LoginController {
 						dialogStage.setScene(scene);
 						dialogStage.show();
 					}
-					if (User.getClass() == Apprenant.class) {
+					if (User.getClass() == Apprenant2.class) {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ApprenantView.fxml"));
 						Parent root = (Parent) loader.load();
 						scene = new Scene(root);

@@ -68,7 +68,7 @@ public class DaoLoginImp  implements DaoLogin{
 						id_Session = (rs.getInt(1));
 					}
 					if (rs.getString(7).equals("Apprenant")) {
-						user = new Apprenant(rs.getString(2), rs.getString(3), rs.getString(4), email, motDePasse,
+						user = new Apprenant2(rs.getString(2), rs.getString(3), rs.getString(4), email, motDePasse,
 								rs.getString(7));
 						id_Session = (rs.getInt(1));
 					}
