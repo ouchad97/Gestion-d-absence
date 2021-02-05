@@ -10,8 +10,6 @@ import java.sql.*;
 
 public class FormateurImpl implements FormateurDao<Formateur> {
 
-    Statement statement = null;
-
     @Override
     public Formateur getIdPersonne(int idPersonne) {
         return null;
@@ -25,7 +23,8 @@ public class FormateurImpl implements FormateurDao<Formateur> {
         DbConnect dbConnect = new DbConnect();
         Connection connectDb = dbConnect.getConnect();
 
-        String query = "select * from personne";
+        String query = "SELECT DISTINCT personne.idPersonne, personne.nom, personne.prenom,personne.surnom,personne.email,personne.motDePasse, personne.`role` FROM apprenant, personne WHERE apprenant.idFormateur = 7 AND apprenant.idPersonne = personne.idPersonne -- AND personne.`role` = 'student'";
+//        SELECT personne.idPersonne, personne.nom, personne.prenom,personne.surnom personne.`role` FROM apprenant, personne WHERE apprenant.idFormateur = 7 AND apprenant.idPersonne = personne.idPersonne -- AND personne.`role` = 'student';
 
         Statement statement  = connectDb.createStatement();
         ResultSet resultat = statement.executeQuery(query);
@@ -49,18 +48,23 @@ public class FormateurImpl implements FormateurDao<Formateur> {
     }
 
     @Override
-    public void insertIntoAbscenceTable(int idPersonne) throws SQLException {
+    public void insertIntoAbscenceTable(int idPersonne, int nbrHeur) throws SQLException {
+        java.util.Date date=new java.util.Date();
+
+        java.sql.Date sqlDate=new java.sql.Date(date.getTime());
 
         DbConnect dbConnect = new DbConnect();
         Connection connectDb = dbConnect.getConnect();
-        String queryInsert = "INSERT into abscence(idAbscence,justif) VALUES(?,?)";
+        String queryInsert = "INSERT into abscence(idAbscence,dateAbscence,nbrHeur,justif) VALUES(?,?,?,?)";
         System.out.println(queryInsert);
         PreparedStatement statement  = connectDb.prepareStatement("select * from abscence",
                                                                 ResultSet.TYPE_SCROLL_SENSITIVE,
                                                                 ResultSet.CONCUR_UPDATABLE);
         PreparedStatement preparedStmt = connectDb.prepareStatement(queryInsert);
-        preparedStmt.setInt (1, 17);
-        preparedStmt.setInt (2, 0);
+        preparedStmt.setInt (1, 29);
+        preparedStmt.setDate (2, sqlDate);
+        preparedStmt.setInt (3, nbrHeur);
+        preparedStmt.setInt (4, 0);
         preparedStmt.execute();
 
 

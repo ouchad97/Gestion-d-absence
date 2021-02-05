@@ -9,7 +9,7 @@ public interface FormateurDao<T> {
         T getIdPersonne(int idPersonne);
         ObservableList<T> getAll() throws ClassNotFoundException, SQLException;
 
-        void insertIntoAbscenceTable(int idPersonne) throws SQLException;
+        void insertIntoAbscenceTable(int idPersonne, int nbrHeur) throws SQLException;
         void insertIntoAppAbscenceTable(int idPersonne, int idAbscence) throws SQLException;
 
 }

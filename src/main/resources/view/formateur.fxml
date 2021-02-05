@@ -65,7 +65,7 @@
                                 <PropertyValueFactory property="prenom" />
                             </cellValueFactory>
                         </TableColumn>
-
+                        <TableColumn fx:id="retard" prefWidth="138.6666768391927" text="retard" />
                         <TableColumn fx:id="abscence" prefWidth="138.6666768391927" text="abscence" />
 
                     </columns>

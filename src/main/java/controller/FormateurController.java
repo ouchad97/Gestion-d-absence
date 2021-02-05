@@ -33,9 +33,11 @@ public class FormateurController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        TableColumn<Formateur, CheckBox> columnRetard = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(2);
+        columnRetard.setCellValueFactory(new CheckAbscentApprenant());
 
-        TableColumn<Formateur, CheckBox> column = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(2);
-        column.setCellValueFactory(new CheckAbscentApprenant());
+        TableColumn<Formateur, CheckBox> columnAbscence = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(3);
+        columnAbscence.setCellValueFactory(new CheckAbscentApprenant());
 
 
 

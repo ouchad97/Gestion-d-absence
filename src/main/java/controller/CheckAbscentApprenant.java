@@ -23,7 +23,7 @@ public class CheckAbscentApprenant implements
             System.out.println("hello");
             System.out.println("hello" + apprenant.getNom());
             try {
-                insert.insertIntoAbscenceTable(Integer.parseInt(apprenant.getId()));
+                insert.insertIntoAbscenceTable(Integer.parseInt(apprenant.getId()), 7);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
