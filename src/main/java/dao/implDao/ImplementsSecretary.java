@@ -59,9 +59,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     @FXML
     private TableColumn<Secretary, String> dateAbsence;
 
-//    @FXML
-//    private TableColumn<Secretary, String> duree;
-
     @FXML
     private TableColumn<Secretary, String> justifie;
 
@@ -123,8 +120,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
             // Get absent students from database
             getAllAbsentStudents();
-
-            showArray();
 
         } catch (SQLException | ClassNotFoundException throwables) {
             System.out.println(throwables.getMessage());
@@ -251,23 +246,8 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         rows.clear();
 
         // Get selected teacher
-//        String selectedTeacher = teacherComboBox.getSelectionModel().getSelectedItem();
         int selectedTeacherIndex = teacherComboBox.getSelectionModel().getSelectedIndex();
         int teacherID = 0;
-
-        // show selected teacher
-//        System.out.println("Selected Teacher is : " + selectedTeacher);
-//        System.out.println("Selected Teacher index : " + selectedTeacherIndex);
-
-        // reading teacher id's
-//        System.out.print("Teachers Indexes: ");
-//        for (int i = 0; i < teachersListIndexes.size(); i++) {
-//            System.out.print(teachersListIndexes.get(i));
-//            System.out.print(" ");
-//        }
-
-//        System.out.println("");
-
 
         // set teacher id
         for (int i = 0; i < teachersListIndexes.size(); i++) {
@@ -275,9 +255,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 teacherID = teachersListIndexes.get(i);
             }
         }
-
-
-//        System.out.println("TeacherID: " + teacherID);
 
         // Instantiate DbConnect and connect to database
         DbConnect dbConnect = new DbConnect();
@@ -303,13 +280,11 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 "    AND abscence.idAbscence = association4.idAbscence\n" +
                 "    AND apprenant.idFormateur = " + teacherID + " ORDER BY dateAbscence DESC;";
 
-//        System.out.println(query);
         Statement statement = connection.createStatement();
         ResultSet queryResult = statement.executeQuery(query);
 
         // Iterate through db rows
         while(queryResult.next()) {
-//            String idQuery = queryResult.getString("idPersonne");
             String idAbsence = queryResult.getString("idAbscence");
             String prenomQuery = queryResult.getString("prenom");
             String nomQuery = queryResult.getString("nom");
@@ -325,21 +300,12 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
             if (justifQuery.equals("0")) {
                 // create rows in table
                 list.add(new Secretary(idAbsence, prenomQuery, nomQuery, surnomQuery, emailQuery, dataAbsenceQuery, btn));
-                System.out.println(idAbsence + "\t" + prenomQuery + "\t" + nomQuery + "\t" + surnomQuery + emailQuery + "\t" + dataAbsenceQuery + "\t" + justifQuery);
 
                 // Adding absenceId to rows arraylist
                 rows.add(Integer.parseInt(idAbsence));
 
-//                System.out.println("done !");
             }
         }
-
-        // elements
-//        for (Secretary row : list) {
-//            System.out.println("Row: " + row);
-//        }
-
-        showArray();
     }
 
     // Initialize basic style for table
@@ -403,52 +369,19 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // using indexOf() to find index of absenceID
         int pos = rows.indexOf(absenceID);
 
-        System.out.println("Position: " + pos);
-
-        System.out.print("Elements: ");
-        for (Integer row : rows) {
-            System.out.print(row);
-            System.out.print(" ");
-        }
-
-        System.out.println("");
-
         // request focus
         table.requestFocus();
 
         // select that row
         table.getSelectionModel().select(pos);
-        System.out.println("Select : " + pos);
 
         // remove selected row
         table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
-//        table.getItems().remove(pos);
-        System.out.println("getItem(): " + table.getSelectionModel().getSelectedItem());
 
         // clear selection
         table.getSelectionModel().clearSelection();
 
         // remove that element from array
         rows.remove(pos);
-        System.out.println("remove index: " + pos);
-
-        // new elements
-        System.out.print("New Elements: ");
-        for (Integer row : rows) {
-            System.out.print(row);
-            System.out.print(" ");
-        }
-
-        System.out.println("");
-    }
-
-    private void showArray() {
-        System.out.println("Elements: ");
-        for (int i = 0; i < rows.size(); i++) {
-            System.out.print(rows.get(i));
-            System.out.print("");
-        }
-
-        System.out.println("");
     }
 }
