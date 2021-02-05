@@ -1,11 +1,9 @@
 package controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.DaoPersonne;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -326,11 +324,12 @@ public class AdministrateurController {
 			if (cmbx_role.getValue() == "Apprenant") {
 				ServicesApprenant.deletePerson(Integer.parseInt(Txt_id.getText()));
 			} else {
-				if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur") {
-					ServicePersonne.deletePerson(Integer.parseInt(Txt_id.getText()));
-				}
+				
 				if (cmbx_role.getValue() == "Formateur") {
 					ServicesFormateur.deletePerson(Integer.parseInt(Txt_id.getText()));
+				}
+				if (cmbx_role.getValue() == "Secretaire" || cmbx_role.getValue() == "Administrateur") {
+					ServicePersonne.deletePerson(Integer.parseInt(Txt_id.getText()));
 				}
 			}
 			// Refresh

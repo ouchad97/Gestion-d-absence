@@ -76,7 +76,7 @@ public class DaoFormateurImp implements DaoFormateur {
 	@Override
 	public int deleteById(int idPersonne) throws ClassNotFoundException, SQLException {
 		String r1 = "Delete from Formateur Where idPersonne = " + idPersonne + "";
-		String r2 = "Delete from Formateur Where idPersonne = " + idPersonne + "";
+		String r2 = "Delete from Personne Where idPersonne = " + idPersonne + "";
 		// String req = r1 + r2;
 
 		Statement statement = null;
