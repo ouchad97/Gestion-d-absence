@@ -93,7 +93,7 @@ public class ApprenantController {
     	id_absence.setCellValueFactory(new PropertyValueFactory<Apprenant, Integer>("idAbscence"));
     	date_absence.setCellValueFactory(new PropertyValueFactory<Apprenant, String>("dateAbscence"));
     	table_justfier.setCellValueFactory(new PropertyValueFactory<Apprenant, String>("justif"));
-    	table_hours.setCellValueFactory(new PropertyValueFactory<Apprenant, Integer>("hours"));
+    	table_hours.setCellValueFactory(new PropertyValueFactory<Apprenant, Integer>("nbrHours"));
     	this.table.setItems(list);
     }
 }

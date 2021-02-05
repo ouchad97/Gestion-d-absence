@@ -33,7 +33,7 @@ public class ApprenantDaoImp implements ApprenantDao{
 			String email = resultat.getString("email");
 			String motDePasse = resultat.getString("motDePasse");
 			String role = resultat.getString("role");
-			int hours = resultat.getInt("Hours");
+			int hours = resultat.getInt("nbrHours");
 			sum = sum+hours;
 			apprenants.add(new Apprenant( idAbscence,  dateAbscence,  justif,  idPersonne,  idSalle,  idPromotion,
 					 referentiel,  nom,  surnom,  prenom,  email,  motDePasse,
