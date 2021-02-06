@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -10,15 +11,15 @@
    <children>
       <AnchorPane layoutX="175.0" layoutY="45.0" prefHeight="333.0" prefWidth="362.0" style="-fx-background-color: #01142F;">
          <children>
+            <TextField fx:id="TxtEmail" layoutX="29.0" layoutY="98.0" prefHeight="43.0" prefWidth="303.0" promptText="Adresse e-mail" />
             <Label layoutX="132.0" layoutY="35.0" text="Bienvenue " textFill="WHITE">
                <font>
                   <Font name="Dubai Bold" size="21.0" />
                </font>
             </Label>
+            <PasswordField fx:id="TxtMdps" layoutX="30.0" layoutY="160.0" prefHeight="44.0" prefWidth="303.0" promptText="Mot de passe" />
          </children>
       </AnchorPane>
-      <TextField fx:id="TxtEmail" layoutX="205.0" layoutY="144.0" prefHeight="43.0" prefWidth="303.0" promptText="Adresse e-mail" />
-      <TextField fx:id="TxtMdps" layoutX="205.0" layoutY="212.0" prefHeight="43.0" prefWidth="303.0" promptText="Mot de passe" />
       <Button fx:id="btnLogin" layoutX="205.0" layoutY="277.0" mnemonicParsing="false" onAction="#Clicklogin" prefHeight="43.0" prefWidth="303.0" style="-fx-background-color: #002D6D;" text="Connexion" textFill="WHITE">
          <font>
             <Font name="Dubai Medium" size="18.0" />
