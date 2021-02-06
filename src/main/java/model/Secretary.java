@@ -25,7 +25,6 @@ public class Secretary {
         this.nickName = new SimpleStringProperty(nickName);
         this.email = new SimpleStringProperty(email);
         this.absenceDate = new SimpleStringProperty(absenceDate);
-//        this.period = new SimpleStringProperty(period);
         this.isJustified = btn;
     }
 
