@@ -9,7 +9,7 @@ public class DbConnect {
     public Connection getConnect() {
         String dbUser = "root";
         String dbPass = "";
-        String url = "jdbc:mysql://localhost:3306/gestion_absence?autoReconnect=true&useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/gestionabsence?autoReconnect=true&useSSL=false";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
