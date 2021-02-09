@@ -16,4 +16,10 @@ public interface SecretaryDoa {
 
     // to justify student absence
     void markAbsenceJustified(String absenceID) throws SQLException, ClassNotFoundException;
+
+    // Create teachers combobox with their names
+    void createTeacher() throws SQLException, ClassNotFoundException;
+
+    // load absent students based on selection of teacher from combobox
+    void loadStudentsByTeacher() throws SQLException, ClassNotFoundException;
 }
