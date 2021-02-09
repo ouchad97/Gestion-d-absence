@@ -77,7 +77,6 @@
             </Button>
             <AnchorPane fx:id="AnchorApprenant" layoutX="8.0" layoutY="347.0" prefHeight="140.0" prefWidth="366.0">
                <children>
-                  <TextField fx:id="Txt_referentiel" layoutX="148.0" layoutY="96.0" prefHeight="32.0" prefWidth="182.0" />
                   <ComboBox fx:id="cmbx_Salle" layoutX="148.0" layoutY="5.0" prefHeight="31.0" prefWidth="182.0" />
                   <ComboBox fx:id="cmbx_Promotion" layoutX="148.0" layoutY="50.0" prefHeight="31.0" prefWidth="182.0" />
                   <Label layoutX="14.0" layoutY="15.0" text="ID Salle" textFill="WHITE">
@@ -95,6 +94,7 @@
                         <Font name="Dubai Bold" size="16.0" />
                      </font>
                   </Label>
+                  <ComboBox fx:id="refComb" layoutX="150.0" layoutY="95.0" prefHeight="31.0" prefWidth="182.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="AnchorFormateur" layoutX="18.0" layoutY="357.0" prefHeight="140.0" prefWidth="366.0">
