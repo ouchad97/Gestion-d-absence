@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="367.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormateurController">
+    <children>
+        <Label text="Primary View" />
+        <Button text="Switch to Secondary View" />
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <top>
+        <AnchorPane prefHeight="45.0" prefWidth="497.0" style="-fx-background-color: #01142F;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="299.0" layoutY="8.0" prefHeight="30.0" prefWidth="261.0" text="Gestion D'abscence" textFill="#fff6f6">
+               <font>
+                  <Font name="Britannic Bold" size="29.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    </top>
+    <left>
+        <AnchorPane prefHeight="305.0" prefWidth="160.0" style="-fx-background-color: #052555;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="32.0" layoutY="189.0" prefHeight="17.0" prefWidth="103.0" text="Formateur" textFill="#fef4f4">
+               <font>
+                  <Font name="AGA Arabesque" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="85.0" layoutY="274.0" prefHeight="17.0" prefWidth="76.0" text="Deconnexion" textFill="#f7f6f6">
+               <font>
+                  <Font name="Bubblegum Sans Regular" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="172.0" fitWidth="174.0" layoutX="-2.0">
+               <image>
+                  <Image url="@../images/profile.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #002D6D;" BorderPane.alignment="CENTER">
+            <children>
+                <TableView fx:id="tableApprenant" layoutX="-4.0" prefHeight="304.0" prefWidth="413.0">
+                    <columns>
+                        <TableColumn fx:id="nom" prefWidth="129.3333282470703" text="nom">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nom" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="prenom" prefWidth="143.3333740234375" text="prenom">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="prenom" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="retard" prefWidth="138.6666768391927" text="retard" />
+                        <TableColumn fx:id="abscence" prefWidth="138.6666768391927" text="abscence" />
+
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
+=======
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -13,3 +89,4 @@
 >
 
 </AnchorPane>
+>>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8

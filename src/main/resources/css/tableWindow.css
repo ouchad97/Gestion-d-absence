@@ -1,0 +1,22 @@
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.id, .nom, .prenom, .surnom, .email, .date, .duree, .justifie {
+    -fx-pref-height: 50px;
+}
+
+.table-title {
+    -fx-text-fill: black;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
