@@ -43,6 +43,10 @@ public class AdministrateurController {
 	@FXML
 	private ComboBox<String> cmbx_role;
 
+
+	@FXML
+	private ComboBox<String> refComb;
+
 	@FXML
 	private Button btnAjout;
 
@@ -90,8 +94,7 @@ public class AdministrateurController {
 	@FXML
 	private ComboBox<Integer> cmbx_PromotionF;
 
-	@FXML
-	private TextField Txt_referentiel;
+
 
 	@FXML
 	private ComboBox<Integer> cmbx_Salle;
@@ -108,6 +111,7 @@ public class AdministrateurController {
 		// combobox Roles
 		cmbx_role.getItems().addAll("Apprenant", "Formateur", "Secretaire", "Administrateur");
 		cmbx_role.setValue("Selectionnez type de profile");
+		refComb.getItems().addAll("Web Mobile", "BEFE", "JEE");
 
 		// combobox Salle
 		cmbx_Salle.getItems().addAll(1, 2, 3, 4, 5, 6);
@@ -151,7 +155,7 @@ public class AdministrateurController {
 				Apprenant apprenant = ServicesApprenant.AddApprenant(Integer.parseInt(Txt_id.getText()),
 						Txt_nom.getText(), Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(),
 						Txt_password.getText(), cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue(),
-						Txt_referentiel.getText());
+						refComb.getValue());
 
 				// Refresh Table
 				List<Personne> personnes = new ArrayList<Personne>();
@@ -241,7 +245,7 @@ public class AdministrateurController {
 				ServicesApprenant.updatApprenant(Integer.parseInt(Txt_id.getText()), Txt_nom.getText(),
 						Txt_prenom.getText(), Txt_surnom.getText(), Txt_email.getText(), Txt_password.getText(),
 						cmbx_role.getValue(), cmbx_Salle.getValue(), cmbx_Promotion.getValue(),
-						Txt_referentiel.getText());
+						refComb.getValue());
 
 				// Refresh
 				List<Personne> personnes = new ArrayList<Personne>();
@@ -340,7 +344,7 @@ public class AdministrateurController {
 			Txt_email.setText("");
 			Txt_password.setText("");
 			cmbx_role.setValue("Selectionnez type de profile");
-			Txt_referentiel.setText("");
+			refComb.setValue("");
 
 			List<Personne> personnes = new ArrayList<Personne>();
 			personnes = ServicePersonne.getAllPersonnes();
@@ -378,7 +382,7 @@ public class AdministrateurController {
 			if (cmbx_role.getValue() == "Apprenant") {
 				cmbx_Salle.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdSalle());
 				cmbx_Promotion.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getIdPromotion());
-				Txt_referentiel.setText(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getReferentiel());
+				refComb.setValue(ServicesApprenant.getApprenantById(userlist.getIdPersonne()).getReferentiel());
 			} else {
 				cmbx_Salle.setValue(1);
 				cmbx_Promotion.setValue(1);
@@ -415,7 +419,7 @@ public class AdministrateurController {
 		Txt_email.setText("");
 		Txt_password.setText("");
 		cmbx_role.setValue("Selectionnez type de profile");
-		Txt_referentiel.setText("");
+		refComb.setValue("");
 
 	}
 }
