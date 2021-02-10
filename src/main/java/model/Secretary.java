@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
-public class Secretary {
+public class Secretary  extends Personne{
     // Secretary Attributes
     private SimpleStringProperty id;
     private SimpleStringProperty firstName;
@@ -25,6 +25,7 @@ public class Secretary {
         this.nickName = new SimpleStringProperty(nickName);
         this.email = new SimpleStringProperty(email);
         this.absenceDate = new SimpleStringProperty(absenceDate);
+//        this.period = new SimpleStringProperty(period);
         this.isJustified = btn;
     }
 

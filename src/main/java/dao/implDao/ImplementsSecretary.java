@@ -32,6 +32,7 @@ import connection.DbConnect;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
+@SuppressWarnings("rawtypes")
 public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHandler {
 
     // Get all widgets id's
@@ -210,7 +211,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     // Create teacher combobox with their names
     @Override
-    public void createTeacher() throws SQLException {
+    public void createTeacher() throws SQLException, ClassNotFoundException {
         // create teachers list
         teachersList = FXCollections.observableArrayList();
 
@@ -219,7 +220,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         Connection connection = dbConnect.getConnect();
 
         // Query that should be get teachers from db
-        String query = "SELECT * FROM personne WHERE role = 'teacher';";
+        String query = "SELECT * FROM Personne WHERE role = 'Formateur';";
 
         Statement statement = connection.createStatement();
         ResultSet queryResult = statement.executeQuery(query);
@@ -240,7 +241,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     // when secretary select a teacher
     @Override
-    public void loadStudentsByTeacher() throws SQLException {
+    public void loadStudentsByTeacher() throws SQLException, ClassNotFoundException {
         // reset table and clear row data aka row id's
         list.clear();
         rows.clear();
