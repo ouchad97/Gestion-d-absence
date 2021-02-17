@@ -74,7 +74,7 @@ public class LoginController {
 
 				} else {
 					if (User.getClass() == Formateur.class) {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FormateurView.fxml"));
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/formateur.fxml"));
 						Parent root = (Parent) loader.load();
 						scene = new Scene(root);
 						dialogStage.setScene(scene);

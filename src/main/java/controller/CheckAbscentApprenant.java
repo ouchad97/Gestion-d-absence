@@ -4,18 +4,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
-import model.Formateur;
+import model.Formateurs;
 import dao.implDao.FormateurImpl;
 
 import java.sql.SQLException;
 
 
 public class CheckAbscentApprenant implements
-        Callback<TableColumn.CellDataFeatures<Formateur, CheckBox>, ObservableValue<CheckBox>> {
+        Callback<TableColumn.CellDataFeatures<Formateurs, CheckBox>, ObservableValue<CheckBox>> {
     FormateurImpl insert = new FormateurImpl();
     @Override
-    public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<Formateur, CheckBox> param) {
-        Formateur apprenant = param.getValue();
+    public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<Formateurs, CheckBox> param) {
+        Formateurs apprenant = param.getValue();
         CheckBox checkBox = new CheckBox();
         checkBox.selectedProperty().setValue(apprenant.isAbscent());
         checkBox.selectedProperty().addListener((ov, old_val, new_val) -> {
@@ -24,7 +24,8 @@ public class CheckAbscentApprenant implements
             System.out.println("hello" + apprenant.getNom());
             try {
                 insert.insertIntoAbscenceTable(Integer.parseInt(apprenant.getId()), 7);
-            } catch (SQLException throwables) {
+
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
             }
         });

@@ -4,10 +4,9 @@ import dao.SecretaryDoa;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.*; 
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
- 
 import javafx.stage.Screen;
 import model.Secretary;
 
@@ -33,9 +32,7 @@ import connection.DbConnect;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
- 
 @SuppressWarnings("rawtypes")
- 
 public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHandler {
 
     // Get all widgets id's
@@ -63,7 +60,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     @FXML
     private TableColumn<Secretary, String> dateAbsence;
 
- 
     @FXML
     private TableColumn<Secretary, String> justifie;
 
@@ -77,17 +73,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     ObservableList<String> teachersList;
     ArrayList<Integer> teachersListIndexes = new ArrayList<Integer>();
 
- 
-//    @FXML
-//    private TableColumn<Secretary, String> duree;
-
-    @FXML
-    private TableColumn<Secretary, String> justifie;
-
-    @FXML
-    private Label title;
-
- 
     // buttons that will be injected to justifie column
     ArrayList<Button> btnsList = new ArrayList<Button>();
 
@@ -96,7 +81,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
     // For storing row id's
     ArrayList<Integer> rows = new ArrayList<Integer>();
- 
+
     // initialize
     Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
@@ -110,10 +95,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
 
         windowWidth = screenBounds.getWidth();
         windowHeight = screenBounds.getHeight();
- 
-    // Constructor
-    public ImplementsSecretary() {
-        super(); 
     }
 
     // this method will run automatically when interface has loaded completely
@@ -134,16 +115,11 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         // Inject to table
         this.table.setItems(list);
 
- 
         try {
             // Get teacher from db and create them
             createTeacher();
 
             // Get absent students from database
- 
-        // Get absent students from database
-        try {
- 
             getAllAbsentStudents();
 
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -174,11 +150,7 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
                 "  ON personne.idPersonne = association4.idPersonne\n" +
                 "  \n" +
                 "JOIN abscence\n" +
- 
                 "  ON abscence.idAbscence = association4.idAbscence ORDER BY dateAbscence DESC;;";
- 
-                "  ON abscence.idAbscence = association4.idAbscence;";
- 
 
         Statement statement = connection.createStatement();
         ResultSet queryResult = statement.executeQuery(query);
@@ -237,7 +209,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
         statement.close();
     }
 
- 
     // Create teacher combobox with their names
     @Override
     public void createTeacher() throws SQLException, ClassNotFoundException {
@@ -341,18 +312,6 @@ public class ImplementsSecretary implements SecretaryDoa, Initializable, EventHa
     // Initialize basic style for table
     @Override
     public void initTableWindowStyle() {
- 
-    // Initialize basic style for table
-    @Override
-    public void initTableWindowStyle() {
-        // initialize
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-
-        // set main window size
-        double windowWidth = screenBounds.getWidth();
-        double windowHeight = screenBounds.getHeight();
-
- 
         // center table title
         double centerTitle = (windowWidth / 2) / 2;
         this.title.setTranslateX(centerTitle);

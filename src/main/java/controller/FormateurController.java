@@ -8,7 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Formateur;
+import model.Formateurs;
 
 import java.io.File;
 import java.net.URL;
@@ -22,7 +22,7 @@ public class FormateurController implements Initializable {
     @FXML
     private ImageView profileImg;
     @FXML
-    private TableView<Formateur> tableApprenant;
+    private TableView<Formateurs> tableApprenant;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FormateurImpl data = new FormateurImpl();
@@ -33,10 +33,10 @@ public class FormateurController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        TableColumn<Formateur, CheckBox> columnRetard = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(2);
+        TableColumn<Formateurs, CheckBox> columnRetard = (TableColumn<Formateurs, CheckBox>) tableApprenant.getColumns().get(2);
         columnRetard.setCellValueFactory(new CheckAbscentApprenant());
 
-        TableColumn<Formateur, CheckBox> columnAbscence = (TableColumn<Formateur, CheckBox>) tableApprenant.getColumns().get(3);
+        TableColumn<Formateurs, CheckBox> columnAbscence = (TableColumn<Formateurs, CheckBox>) tableApprenant.getColumns().get(3);
         columnAbscence.setCellValueFactory(new CheckAbscentApprenant());
 
 

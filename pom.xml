@@ -14,18 +14,7 @@
     </properties>
 
     <build>
-<<<<<<< HEAD
-=======
-        <!--        <resources>-->
-        <!--            <resource>-->
-        <!--                <directory>src/main/resources</directory>-->
-        <!--                <includes>-->
-        <!--                    <include>*/*.fxml</include>-->
-        <!--                </includes>-->
-        <!--            </resource>-->
-        <!--        </resources>-->
 
->>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8
         <plugins>
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -43,11 +32,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-<<<<<<< HEAD
             <version>11.0.1</version>
-=======
-            <version>15.0.1</version>
->>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8
         </dependency>
 
         <!-- For JavaFx Fxml -->
@@ -57,7 +42,6 @@
             <version>11.0.1</version>
         </dependency>
 
-<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -65,9 +49,6 @@
             <version>16-ea+6</version>
         </dependency>
 
-
-=======
->>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8
         <!-- For JavaFx Graphics -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -81,14 +62,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.23</version>
         </dependency>
-<<<<<<< HEAD
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>11.0.1</version>
         </dependency>
-=======
->>>>>>> 8bea92ca8291cbb7a1fa9db61b3c6523635e55c8
-
     </dependencies>
 </project>

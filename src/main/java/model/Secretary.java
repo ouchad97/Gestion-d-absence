@@ -6,9 +6,7 @@ import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
- 
-public class Secretary  extends Personne{ 
-public class Secretary { 
+public class Secretary  extends Personne{
     // Secretary Attributes
     private SimpleStringProperty id;
     private SimpleStringProperty firstName;
